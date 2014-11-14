@@ -33,7 +33,7 @@ var initSwiper = function($scope, user) {
     $(".metadata" + scope.currentIndex).show();
     $(".productContainer").swipe({
       swipe: function(event, direction, distance, duration, fingerCount) {
-        if (duration > 100 && distance > 100) {
+        if (duration > 50 && distance > 50) {
           var product = scope.products[scope.currentIndex];
           console.log(product.comment);
           if (product.comment) {
@@ -41,7 +41,7 @@ var initSwiper = function($scope, user) {
               url: "/comments/createcomment",
               type: "POST",
               data: {
-                productId: product.productId,
+                productId: product.id,
                 creatorId: currentUser,
                 content: product.comment
               },
