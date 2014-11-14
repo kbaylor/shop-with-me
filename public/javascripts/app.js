@@ -1,9 +1,8 @@
 var app = angular.module('app', [
   'ngRoute',
-  'ngAnimate'
-]);
-
-app.config(['$routeProvider',
+  'ngAnimate',
+  'mobile-angular-ui'
+]).config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/browse', {
@@ -17,6 +16,7 @@ app.config(['$routeProvider',
       otherwise({
         redirectTo: '/browse'
       });
-  }]);
+  }
+]);
   
   

@@ -2,12 +2,18 @@
 <html ng-app="app">
   <head>
     <title><%= title %></title>
+	
+    <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-hover.min.css" />
+    <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css" />
+    <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.min.css" />	
+	
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css' />
     
   	<script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src='bower_components/angular-animate/angular-animate.min.js' ></script>
+	  <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>	
+	
   	<script src="javascripts/app.js"></script>
   
   	<!-- remove once js is concatenated -->
@@ -15,6 +21,36 @@
   	<script src="javascripts/controllers/view2.js"></script>
   </head>
   <body>
-	<div ng-view></div>
+	<div class="app">
+	  <div class="navbar navbar-app navbar-absolute-top">
+      <div class="navbar-brand navbar-brand-center">
+        Shop With Friends
+      </div>
+
+      <div class="btn-group pull-left">
+        <div class="btn btn-navbar" style="font-weight: bold;font-size: 30px;">
+          &lt;
+        </div>
+      </div>
+
+      <div class="btn-group pull-right">
+        <div class="btn btn-navbar">
+          Right Action
+        </div>
+      </div>
+	  </div>
+
+	  <div class="navbar navbar-app navbar-absolute-bottom">
+      Bottom Navbar
+	  </div>
+
+	  <div class="app-body" style="top:50px;bottom:50px;>
+      <div class="scrollable">
+        <div class="scrollable-content">
+          <ng-view></ng-view>
+        </div>
+      </div>
+	  </div>
+	</div>
   </body>
 </html>
