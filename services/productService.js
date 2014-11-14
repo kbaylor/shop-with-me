@@ -13,8 +13,21 @@ module.exports = {
     });
     return productListProducts;
   },
+  getProductGivenProductId: function(productId) {
+    var productRet;
+    products.forEach(function(product, index) {
+      if (product.id == productId){
+        productRet = product;
+        return;
+      }
+    });
+    return productRet;
+  },
   getAllAmazonProducts: function() {
     return amazonProducts;
+  },
+  getAllProducts: function() {
+    return products;
   }
 }
 

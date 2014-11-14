@@ -4,6 +4,8 @@ var url = require('url');
 
 var productService = require('../services/productService.js');
 var productListService = require('../services/productListService.js');
+var voteService = require('../services/voteService.js');
+var commentService = require('../services/commentService.js');
 
 // Let's get all of our query parameters
 var url = require('url');
@@ -45,6 +47,38 @@ router.get('/productlist/share/user/:userId', function(req, res) {
   var userId = req.params.userId;
   res.json(productListService.getSharedProductLists(userId));
 });
+
+
+/* Vote Endpoints */
+router.post('/vote/performVote', function(req, res) {
+  var productId = parseInt(req.body.productId);
+  var voterId = parseInt(req.body.voterId);
+  var voteAmount = parseInt(req.body.vote);
+
+  voteService.performVote(productId, voterId, voteAmount);
+  res.status(200).send();
+});
+
+router.get('/vote', function(req, res) {
+  res.json(voteService.getAllVotes());
+});
+
+/* Comment Endpoints */
+router.get('/comments/product/:productId', function(req, res) {
+  var productId = req.params.productId;
+
+  res.json(commentService.getCommentsGivenProductId(productId));
+});
+
+router.post('/comments/createComment', function(req, res) {
+  var productId = parseInt(req.body.productId);
+  var creatorId = parseInt(req.body.creatorId);
+  var content = req.body.content;
+
+  commentService.createComment(productId, creatorId, content);
+  res.status(200).send();
+});
+
 
 /* END GET JSON Endpoints */
 
