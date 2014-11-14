@@ -55,7 +55,7 @@
     <div class="carouselContainer col-xs-12 vertical-center">
       <span ng-repeat="product in nonvotedProducts" ng-show="product.index == currentIndex">
         <div id="product{{product.index}}" class="row productContainer">
-          <div class="imageContainer">
+          <div class="imageContainer swipable" ng-swipe-left="handleSwipe('left')" ng-swipe-right="handleSwipe('right')")>
             <div class="negativeVote vertical-center col-xs-1">
               <i class="fa fa-times" style:"padding:0px"></i>
             </div>
@@ -64,7 +64,7 @@
               <i class="fa fa-heart" style="padding:0px;color:darkred;"></i>
             </div>
           </div>
-          <div class="productData row">
+          <div class="productData">
               <div class="description metadata1">
                 <strong>{{product.description}}</strong>
                 <p>Price: <span style="color:green;">{{product.cost | currency:"USD$":2}}</span></p>

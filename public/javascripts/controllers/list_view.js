@@ -80,6 +80,21 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       $scope.launchImmersiveView = function(index) {
         $location.path('/lists/' + productListId + '/' + index);
       }
+
+      $scope.handleSwipe = function(direction) {
+        handleSwipe($scope, direction);
+      }
+
+      navigationService.setButtons([
+         {
+           text: 'Add',
+           handler: $scope.addMore
+         },
+         {
+           text: 'Share',
+           handler: $scope.share
+         }
+      ]);
       
       /** Vote code **/
       $scope.handleSuccess = function() {
@@ -90,85 +105,69 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
    }
 ]);
 
-var initSwiper = function($scope) {
-  var scope = $scope;
-  $(function() {
-    $(".metadata" + scope.currentIndex).show();
-    $(".productContainer").swipe({
-      swipe: function(event, direction, distance, duration, fingerCount) {
-        if (duration > 200 && distance > 200) {
-          $scope.$apply(function() {
-            $scope.duration = duration;
-            $scope.distance = distance;
-          });
-          var product = scope.nonvotedProducts[scope.currentIndex];
+var handleSwipe = function(scope, swipeDirection) {
+  function castVote(productID, currentUser, decision) {
+    $.ajax({
+      url: "/vote/performvote",
+      type: "POST",
+      data: {
+        productId: productID,
+        voterId: currentUser,
+        vote: decision
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    })
+  };
+  var product = scope.nonvotedProducts[scope.currentIndex];
 
-          if (product.comment) {
-            $.ajax({
-              url: "/comments/createcomment",
-              type: "POST",
-              data: {
-                productId: product.productId,
-                creatorId: scope.userId,
-                content: product.comment
-              },
-              error: function(err) {
-                console.log(err);
-              }
-            });
-          }
-          var options = {
-            opacity:'0.2',
-            height:'100px',
-            width:'100px',
-            borderColor:'white'
-          };
-          if (direction === 'left') {
-            options.marginLeft = '-=400px';
-            castVote(product.id, scope.userId, -1);
-          } else {
-            options.marginLeft = '+=400px';
-            castVote(product.id, scope.userId, 1);
-          }
-
-          this.animate(options, 400, function() {
-            scope.$apply(function() {
-              scope.currentIndex += 1;
-              if (scope.currentIndex < scope.nonvotedProducts.length) {
-                $("#product" + scope.currentIndex).fadeIn();
-              } else {
-                $.ajax({
-                  url: "/vote/finish",
-                  type: "POST",
-                  success: function() {
-                    scope.handleSuccess();
-                  },
-                  error: function(err) {
-                    console.log(err);
-                  }
-                });
-              }
-            });
-          });
-        }
+  if (product.comment) {
+    $.ajax({
+      url: "/comments/createcomment",
+      type: "POST",
+      data: {
+        productId: product.id,
+        creatorId: scope.userId,
+        content: product.comment
+      },
+      error: function(err) {
+        console.log(err);
       }
     });
+  }
+  var options = {
+    opacity:'0.2',
+    height:'100px',
+    width:'100px',
+    borderColor:'white'
+  };
+  if (swipeDirection === 'left') {
+    options.marginLeft = '-=400px';
+    castVote(product.id, scope.userId, -1);
+  } else {
+    options.marginLeft = '+=400px';
+    castVote(product.id, scope.userId, 1);
+  }
 
-    function castVote(productID, currentUser, decision) {
-      $.ajax({
-        url: "/vote/performvote",
-        type: "POST",
-        data: {
-          productId: productID,
-          voterId: currentUser,
-          vote: decision
-        },
-        error: function(err) {
-          console.log(err);
-        }
-      })
-    }
-
+  $("#product" + scope.currentIndex).animate(options, 400, function() {
+    scope.$apply(function() {
+      scope.currentIndex += 1;
+      if (scope.currentIndex < scope.nonvotedProducts.length) {
+        $("#product" + scope.currentIndex).fadeIn();
+      } else {
+        $.ajax({
+          url: "/vote/finish",
+          type: "POST",
+          success: function() {
+            scope.handleSuccess();
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+      }
+    });
   });
-};
+}
 
