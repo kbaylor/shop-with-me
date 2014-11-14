@@ -1,0 +1,9 @@
+<div class="">
+  <ul class="list-group">
+    <li class="list-group-item swipeable" ng-repeat="list in lists track by $index" ng-swipe-left="console.log('swipe')" ng-click="">
+      <div class="row">
+        {{list.title}}
+      </div>
+    </li>
+  </ul>
+</div>

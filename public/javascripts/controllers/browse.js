@@ -1,5 +1,5 @@
-app.controller('BrowseCtrl', ['$scope', '$http', '$location',
-  function($scope, $http, $location) {
+app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService',
+  function($scope, $http, $location, navigationService) {
     $scope.test = "Hello World";
         
     $http.get("/products/all").success(function(data) {
