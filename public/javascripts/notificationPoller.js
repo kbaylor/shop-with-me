@@ -32,11 +32,14 @@
 					if (!notification.acknowledged) {
 						totalUnacknowledged++;
 					}
-					updateNotificationTab(totalUnacknowledged);
 				});
+				updateNotificationTab(totalUnacknowledged);
+			},
+			error: function(err) {
+				console.log(err);
 			}
 		});
-	}, 10000);
+	}, 1000);
 	$(document).ready(function() {
 		$("#notificationTab").on('click', function() {
 			$.ajax({

@@ -3,7 +3,8 @@ var notificationIncrementId = 1;
 
 module.exports = {
   getNotificationsGivenUserId: function(userId) {
-    var userNotifications = notifications[userId];
+    var userNotifications = notifications[userId] || [];
+    console.log("DEBUG");
     userNotifications.sort(function(a, b) {
       return (a > b) ? -1 : 1;
     });
