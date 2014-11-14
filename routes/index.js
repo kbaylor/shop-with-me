@@ -26,7 +26,6 @@ router.get('/individual-item-view', function(req, res) {
   res.render('individual-item-view', getQueryParams(req));
 });
 
-
 /* JSON Endpoints */
 
 /* Product Endpoints */
@@ -50,9 +49,15 @@ router.get('/productlist/share/user/:userId', function(req, res) {
   res.json(productListService.getSharedProductLists(userId));
 });
 
-router.get('/productlist/share/notshared/user/:userId', function(req, res) {
+router.get('/productlist/:productListId/findunshared/user/:userId', function(req, res) {
+  var productListId = req.params.productListId;
   var userId = req.params.userId;
-  
+  var friendsToShare = productListService.getFriendsToShareList(productListId, userId);
+  res.json(friendsToShare);
+});
+
+router.get('/productlist/share/notshared/user/:userId', function(req, res) {
+  var userId = req.params.userId;  
   res.json(productListService.getUnSharedProductLists(userId));
 });
 
@@ -68,6 +73,20 @@ router.post('/productlist/removeproductlist', function(req, res) {
 
   productListService.deleteProductList(productListId);
   res.status(200).send();
+});
+
+router.post('/productlist/addproduct', function(req, res) {
+  var productListId = parseInt(req.body.productListId);
+  var productAsin = req.body.productAsin;
+  productListService.addItemToProductList(productListId, productAsin);
+  res.status(200).send();
+});
+
+router.post('/productlist/create', function(req, res) {
+  var productListTitle = req.body.title;
+  var productListOwner = parseInt(req.body.ownerId); 
+  var productList = productListService.createList(productListTitle, productListOwner);
+  res.status(200).json({"list": productList}).send();
 });
 
 router.get('/productlist/:productListId', function(req, res) {
@@ -87,6 +106,13 @@ router.post('/vote/performvote', function(req, res) {
 
 router.get('/vote', function(req, res) {
   res.json(voteService.getAllVotes());
+});
+
+router.get('/vote/nonvotedproducts/productlist/:productListId/user/:userId', function (req, res) {
+  var productListId = req.params.productListId;
+  var userId = req.params.userId;
+
+  res.json(voteService.getProductsNotVotedGivenProductList(productListId, userId));
 });
 
 router.post('/vote/finish', function(req, res) {
@@ -122,6 +148,8 @@ router.post('/comments/createcomment', function(req, res) {
   
   notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
 
+  //TODO: Include RECOMMENT case
+
   commentService.createComment(productId, creatorId, content);
   res.status(200).send();
 });
@@ -132,7 +160,6 @@ router.get('/users/:userId/friends', function(req, res) {
   
   res.json(userService.getFriendsGivenUserId(userId));
 });
-
 
 /* Notification Endpoints */
 router.get('/notifications/user/:userId', function(req, res) {

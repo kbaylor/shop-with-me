@@ -1,6 +1,6 @@
 app.controller('ShareCtrl', ['$scope', '$http', '$routeParams', 'navigationService', function($scope, $http, $routeParams, navigationService) {
     $scope.id = $routeParams.listId;
-    $scope.friends = [];
+    
     navigationService.setButtons([{
         text: 'Share with friends',
         handler: function() {
@@ -9,6 +9,7 @@ app.controller('ShareCtrl', ['$scope', '$http', '$routeParams', 'navigationServi
         }
     }]);
     $http.get("/users/1/friends").success(function(data) {
+        $scope.friends = [];
         angular.forEach(data, function(friend) {
             if(friend.name == "Susan"){
               friend.selected = true;

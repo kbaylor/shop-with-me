@@ -1,5 +1,6 @@
+'use-strict';
 var comments = require('../data/comments.json');
-var commentIdIncrement = 3;
+var commentIdIncrement = 1000;
 var userService = require('../services/userService.js');
 
 module.exports = {
@@ -15,7 +16,6 @@ module.exports = {
   getCommentsGivenProductId: function(productId) {
     var commentsForProduct = [];
     comments.forEach(function(comment, index) {
-      console.log(comment);
       if (comment.product_id == productId){
         comment.creator = userService.getUserFromUserId(comment.creator_id);
         commentsForProduct.push(comment);
@@ -23,4 +23,4 @@ module.exports = {
     });
     return commentsForProduct;
   }
-}
+};

@@ -1,5 +1,5 @@
-app.controller('BrowseCtrl', ['$scope', '$http', '$location',
-  function($scope, $http, $location) {
+app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService',
+  function($scope, $http, $location, navigationService) {
     $scope.test = "Hello World";
         
     $http.get("/products/all").success(function(data) {
@@ -59,6 +59,16 @@ app.controller('BrowseCtrl', ['$scope', '$http', '$location',
     
     $scope.saveNewList = function(newListTitle) {
       $scope.modalShown = false;
+    }
+    
+    $scope.addProductToList = function(product, selectedList) {
+      for (i=0; i < $scope.lists.length; i++) {
+        if ($scope.lists[i].id == selectedList.id) {
+          // found the list
+          $scope.lists[i].products[$scope.lists[i].products.length] = product;
+          break;
+        }
+      }
     }
   }
 ]);

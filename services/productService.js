@@ -1,13 +1,15 @@
+'use-strict';
 var products = require('../data/products.json');
 var amazonProducts = require('../data/amazon_product.json');
 var commentService = require('../services/commentService.js');
+var productIncrementId = 1000;
 
 module.exports = {
   deleteProductsByProductList: function(productListId) {
     var i = 0;
 
     while (i < products.length) {
-      if (products[i].product_list_id === productListId) {
+      if (products[i].product_list_id == productListId) {
         products.splice(i, 1);
       } else {
         i++;
@@ -46,8 +48,18 @@ module.exports = {
   },
   getAllProducts: function() {
     return products;
+  },
+  createProduct: function(productListId, productAsin) {
+    var product = {};
+    product.amazon_asin = productAsin;
+    product.product_list_id = productListId;
+    product.up_votes = 0;
+    product.down_votes = 0;
+    product.id = productIncrementId;
+    productIncrementId++;
+    products.push(product);
   }
-}
+};
 
 var getProductDetailsForProduct = function(productObj) {
   var productAsin = productObj.amazon_asin;
@@ -59,4 +71,4 @@ var getProductDetailsForProduct = function(productObj) {
     }
   });
   return amazonProductReturn;
-}
+};

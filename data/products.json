@@ -54,5 +54,47 @@
       "down_votes": 4,
       "amazon_asin":"B0089OQHSS",
       "product_list_id":3
+   },
+   {  
+      "id":9,
+      "up_votes":0,
+      "down_votes": 0,
+      "amazon_asin":"B00NL19JES",
+      "product_list_id":1
+   },
+   {  
+      "id":10,
+      "up_votes":3,
+      "down_votes": 1,
+      "amazon_asin":"B00GUD9GA6",
+      "product_list_id":1
+   },
+   {  
+      "id":11,
+      "up_votes":5,
+      "down_votes": 3,
+      "amazon_asin":"B00LKBS76W",
+      "product_list_id":1
+   },
+   {  
+      "id":12,
+      "up_votes": 1,
+      "down_votes": 0,
+      "amazon_asin":"B00O1T2JQO",
+      "product_list_id":3
+   },
+   {  
+      "id":13,
+      "up_votes": 2,
+      "down_votes": 1,
+      "amazon_asin":"B00EZEER2E",
+      "product_list_id":3
+   },
+   {  
+      "id":14,
+      "up_votes": 1,
+      "down_votes": 4,
+      "amazon_asin":"B0089OQHSS",
+      "product_list_id":3
    }
 ]

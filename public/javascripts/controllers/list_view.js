@@ -1,20 +1,5 @@
-app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', 'navigationService',
-   function($scope, $http, $routeParams, $location, navigationService) {
-      navigationService.setButtons([
-      {
-        text: 'Add',
-        handler: function() {
-          console.log('Handle add');
-        }
-      },
-      {
-        text: 'Share',
-        handler: function() {
-          console.log('Handle share');
-        }
-      }
-      ]);
-   
+app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', '$timeout', 'navigationService',
+   function($scope, $http, $routeParams, $location, $timeout, navigationService) {   
       var productListId = $routeParams.listId;
 
       $scope.products = [];
@@ -28,10 +13,17 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
          $scope.products = products;
       });
 
-      $scope.removeProduct = function(index) {
+      $scope.removeProduct = function(productId) {
 
-         var productId = $scope.products[index].id;
-         $scope.products.splice(index, 1);
+         var productIndex = -1;
+
+         $scope.products.forEach(function(product, index) { 
+            if (product.id === productId) {
+               productIndex = index;
+            }
+         });
+
+         $scope.products.splice(productIndex, 1);
       
          // Service call to delete
          $http.post('/productlist/removeproduct', { productId: productId });
@@ -42,11 +34,26 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       };
 
       $scope.addMore = function() {
+        $timeout(function () {
          $location.path('/browse').search({selectedListId: productListId});
+       });
       };
 
       $scope.share = function() {
+        $timeout(function () {
          $location.path('/lists/' + productListId + '/share');
+       });
       };
+
+      navigationService.setButtons([
+         {
+           text: 'Add',
+           handler: $scope.addMore
+         },
+         {
+           text: 'Share',
+           handler: $scope.share
+         }
+      ]);
    }
 ]);
