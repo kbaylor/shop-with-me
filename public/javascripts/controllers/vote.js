@@ -5,11 +5,11 @@ app.controller('VoteCtrl', ['$scope', '$http', '$routeParams', '$timeout', 'navi
     $scope.currentIndex = 0;
 
     // Service call to get the list & list items
-    $http.get('/productlist/' + productListId).success(function(productList) {http://localhost:5000/images/testImage6.jpeg
+    $http.get('/productlist/' + productListId).success(function(productList) {
        navigationService.setTitle(productList.title);
     });
 
-    $http.get('/productlist/' + productListId + '/products').success(function(products) {1
+    $http.get('/productlist/' + productListId + '/products').success(function(products) {
       var count = 0;
       $.each(products, function(i, product) { product.index = count++ });
       $scope.products = products;
