@@ -7,7 +7,7 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width:100%">
-        <li role="presentation" ng-repeat="list in lists" ng-click="onChangeListItem(list)"><a role="menuitem" id="listItem[{{$index}}]">{{list.title}}</a></li>
+        <li role="presentation" ng-repeat="list in lists" ng-click="onChangeListItem(list)"><a role="menuitem">{{list.title}}</a></li>
         <li role="presentation" class="divider"></li>
         <li role="presentation" ng-click="toggleModal()"><a role="menuitem" id="createNewList">Create new list...</a></li>
       </ul>
@@ -33,7 +33,7 @@
             </div>
             
             <div class="col-xs-2">
-                <i ng-show="!isProductOnSelectedList(selectedList, product.asin) && selectedList" class="fa fa-3x fa-plus-square"></i>
+                <i ng-show="!isProductOnSelectedList(selectedList, product.asin) && selectedList" class="fa fa-3x fa-plus-square" ng-click="addProductToList(product, selectedList)"></i>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
         </div>
       </li>
       <li class="animate-repeat" ng-if="results.length == 0">
-        <strong>No results found...</strong>
+        <strong>No products remaining...</strong>
       </li>
     </ul>
   </div>
