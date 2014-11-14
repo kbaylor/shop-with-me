@@ -2,18 +2,13 @@
 
     <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
         <div class="list-group" style="padding-top:56px;">
-            <a ng-repeat="friend in friends" class="list-group-item" ng-click="friendClicked(friend); $event.stopPropagation();" ng-class="friend.selected? 'active' : '' ">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img ng-src="{{friend.pic}}" class="img-rounded">
-                    </div>
-                    <div class="col-md-4">
-                        <label>{{friend.name}}</label>
-                    </div>
-                    <div class="col-md-4">
-                        <i class="fa fa-check fa-4x pull-right" ng-show="friend.selected"></i>
-                    </div>
-                </div>
+            <a ng-repeat="friend in friends" 
+                class="list-group-item" 
+                ng-click="friendClicked(friend); $event.stopPropagation();" >
+
+                <img ng-src="{{friend.pic}}" class="img-rounded">
+                <label>{{friend.name}}</label>
+                <i class="fa fa-check fa-4x pull-right" ng-show="friend.selected"></i>
             </a>
         </div>
     </div>

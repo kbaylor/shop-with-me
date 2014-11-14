@@ -8,6 +8,11 @@ app.controller('ShareCtrl', ['$scope', function($scope) {
         "name": "user2",
         "pic": "/images/user2.jpg",
         "selected": false
+    },
+    {
+        "name": "user3",
+        "pic": "/images/user3.jpg",
+        "selected": false
     }]
 
     $scope.friendClicked = function(friend){
