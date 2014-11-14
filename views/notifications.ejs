@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notifications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css' type='text/css' />
+    <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css' type='text/css' />
+    <script src='/bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='/bower_components/bootstrap/dist/js/bootstrap.min.js'></script> 
+    <style>
+    	.notification {
+    		margin-top: 10px;
+    		padding-bottom: 10px;
+    		border-bottom: 1px solid gray;
+    	}
+
+    	.notification .timestamp {
+    		color: gray;
+    	}
+    </style>  
+  </head>
+  <body>
+  	<div class="container">
+		<ul class="list-unstyled">
+	    	<% for (var i = 0; i < notifications.length; i++) { %>
+	    		<li class="notification row">
+					<div class="image col-xs-4">
+						<img class="img-circle img-responsive" src="<%= notifications[i].image %>" />
+					</div>
+					<div class="content col-xs-8">
+						<div class="message">
+							<b><%= notifications[i].name %></b> <%= notifications[i].description %> <b><%= notifications[i].collection %></b> collection
+						</div>
+						<div class="timestamp">
+							<%= notifications[i].time %>
+						</div>
+					</div>
+	    		</li>
+	    		<li class="divider"></li>
+	    	<% } %>
+	    </ul>
+	</div>
+  </body>
+</html>
+
