@@ -1,6 +1,6 @@
 var productService = require('../services/productService.js');
 var userVotes = [];
-var voteIncrementId = 1;
+var voteIncrementId = 1000;
 
 module.exports = {
   performVote: function(productId, voterId, voteAmount) {

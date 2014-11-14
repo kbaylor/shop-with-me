@@ -1,6 +1,6 @@
 'use-strict';
 var comments = require('../data/comments.json');
-var commentIdIncrement = 3;
+var commentIdIncrement = 1000;
 var userService = require('../services/userService.js');
 
 module.exports = {
