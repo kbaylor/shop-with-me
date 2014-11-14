@@ -134,7 +134,7 @@ router.post('/vote/finish', function(req, res) {
   productListService.updateSharedProductListToFinishedForUser(productListId, voterId);
  
   //Create Notification to ProductlistOwner
-  var productList = productListService.getProductListGivenProductListId(product.product_list_id)
+  var productList = productListService.getProductListGivenProductListId(productListId);
   var creatorObj = userService.getUserFromUserId(voterId);
 
   var productListOwner = userService.getUserFromUserId(productList.owner_id);
