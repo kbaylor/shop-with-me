@@ -84,17 +84,6 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       $scope.handleSwipe = function(direction) {
         handleSwipe($scope, direction);
       }
-
-      navigationService.setButtons([
-         {
-           text: 'Add',
-           handler: $scope.addMore
-         },
-         {
-           text: 'Share',
-           handler: $scope.share
-         }
-      ]);
       
       /** Vote code **/
       $scope.handleSuccess = function() {
