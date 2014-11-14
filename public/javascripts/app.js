@@ -2,7 +2,8 @@ var app = angular.module('app', [
   'ngRoute',
   'ngAnimate',
   'ngTouch',
-  'mobile-angular-ui'
+  'mobile-angular-ui',
+  'LocalStorageModule'
 ]);
 
 app.config(['$routeProvider',
@@ -37,8 +38,12 @@ app.config(['$routeProvider',
         templateUrl: 'views/vote.html',
         controller: 'VoteCtrl'
       }).
+      when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      }).
       otherwise({
-        redirectTo: '/browse'
+        redirectTo: '/login'
       });
   }
 ]);

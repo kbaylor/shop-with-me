@@ -1,7 +1,9 @@
-app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService',
-  function($scope, $http, $location, navigationService) {
+app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService', 'authenticationService',
+  function($scope, $http, $location, navigationService, authenticationService) {
     $scope.test = "Hello World";
-        
+    
+    var currentUser = authenticationService.getCurrentUser();
+
     $http.get("/products/all").success(function(data) {
       $scope.products = data;
     });

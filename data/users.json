@@ -2,6 +2,7 @@
    {  
       "id":1,
       "name":"Roger",
+      "email":"roger@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
          {  
@@ -45,6 +46,7 @@
    {  
       "id":2,
       "name":"Fred",
+      "email":"fred@amazon.com",
       "image_url": "/images/user2.jpg",
       "friends":[  
          {  
@@ -55,12 +57,14 @@
    {  
       "id":3,
       "name":"Susan",
+      "email":"susan@amazon.com",
       "image_url": "/images/user3.jpg",
       "friends":[]
    },
    {  
       "id":4,
       "name":"Roger2",
+      "email":"roger2@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
          {  
@@ -71,6 +75,7 @@
    {  
       "id":5,
       "name":"Fred2",
+      "email":"fred2@amazon.com",
       "image_url": "/images/user2.jpg",
       "friends":[  
          {  
@@ -81,12 +86,14 @@
    {  
       "id":6,
       "name":"Susan2",
+      "email":"susan2@amazon.com",
       "image_url": "/images/user3.jpg",
       "friends":[]
    },
    {  
       "id":7,
       "name":"Robot Steve",
+      "email":"robot@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
          {  
@@ -97,6 +104,7 @@
    {  
       "id":8,
       "name":"Roger3",
+      "email":"roger3@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
          {  
@@ -107,6 +115,7 @@
    {  
       "id":9,
       "name":"Fred3",
+      "email":"fred3@amazon.com",
       "image_url": "/images/user2.jpg",
       "friends":[  
          {  
@@ -117,6 +126,7 @@
    {  
       "id":10,
       "name":"Susan3",
+      "email":"susan3@amazon.com",
       "image_url": "/images/user3.jpg",
       "friends":[  
          {  
@@ -126,7 +136,8 @@
    },
    {  
       "id":11,
-      "name":"Roger3",
+      "name":"Roger4",
+      "email":"roger4@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
          {  
@@ -137,6 +148,7 @@
    {  
       "id":12,
       "name":"Fred4",
+      "email":"fred4@amazon.com",
       "image_url": "/images/user2.jpg",
       "friends":[  
          {  
@@ -147,6 +159,7 @@
    {  
       "id":13,
       "name":"Robo Susan",
+      "email":"robos@amazon.com",
       "image_url": "/images/user3.jpg",
       "friends":[  
          {  
