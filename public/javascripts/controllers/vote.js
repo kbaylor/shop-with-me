@@ -33,7 +33,7 @@ var initSwiper = function($scope, user) {
     $(".metadata" + scope.currentIndex).show();
     $(".productContainer").swipe({
       swipe: function(event, direction, distance, duration, fingerCount) {
-        if (duration > 200 && distance > 200) {
+        if (duration > 100 && distance > 100) {
           var product = scope.products[scope.currentIndex];
           console.log(product.comment);
           if (product.comment) {
