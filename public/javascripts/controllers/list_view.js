@@ -1,6 +1,20 @@
 app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', 'navigationService',
    function($scope, $http, $routeParams, $location, navigationService) {
-
+      navigationService.setButtons([
+      {
+        text: 'Add',
+        handler: function() {
+          console.log('Handle add');
+        }
+      },
+      {
+        text: 'Share',
+        handler: function() {
+          console.log('Handle share');
+        }
+      }
+      ]);
+   
       var productListId = $routeParams.listId;
 
       $scope.products = [];
