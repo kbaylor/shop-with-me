@@ -1,0 +1,14 @@
+[  
+   {  
+      "id":1,
+      "content":"I think this would look great on you!",
+      "owner_id":2,
+      "product_id":1
+   },
+   {  
+      "id":2,
+      "content":"Meh...",
+      "owner_id":1,
+      "product_id":6
+   }
+]
