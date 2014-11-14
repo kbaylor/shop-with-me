@@ -21,28 +21,19 @@
   	<script src="javascripts/app.js"></script>
   
   	<!-- remove once js is concatenated -->
+    <!-- Services -->
+  	<script src="javascripts/services/navigationService.js"></script>
+    
+    <!-- Directives -->
+  	<script src="javascripts/directives/navigationDirective.js"></script>    
+    
   	<script src="javascripts/controllers/browse.js"></script>
   	<script src="javascripts/controllers/view2.js"></script>
+  	<script src="javascripts/controllers/browse.js"></script>
   </head>
   <body>
-	<div class="app">
-	  <div class="navbar navbar-app navbar-absolute-top swf-header">
-      <div class="navbar-brand navbar-brand-center">
-        Shop With Friends
-      </div>
-
-      <div class="btn-group pull-left">
-        <div class="btn btn-navbar">
-          <span class="swf-navbar swf-navbar-back-btn">&lt;</span>
-        </div>
-      </div>
-
-      <div class="btn-group pull-right">
-        <div class="btn btn-navbar">
-          <span class="swf-navbar">Right Action</span>
-        </div>
-      </div>
-	  </div>
+  <div class="app">
+    <swm-navigation></swm-navigation>
 
 	  <div class="navbar navbar-app navbar-absolute-bottom">
       <div class="btn-group justified nav-tabs">

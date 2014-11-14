@@ -42,22 +42,6 @@ a {
   color: white;
 }
 
-.swf-navbar-back-btn {
-  font-weight: bold;
-  font-size: 30px;
-}
-
 .btn.active {
   background-color: #D8D8D8;
-}
-
-.swf-header2 {
-  background: #fcf8d4; /* Old browsers */
-  background: -moz-linear-gradient(top, #fcf8d4 0%, #f1da36 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcf8d4), color-stop(100%,#f1da36)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #fcf8d4 0%,#f1da36 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #fcf8d4 0%,#f1da36 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #fcf8d4 0%,#f1da36 100%); /* IE10+ */
-  background: linear-gradient(to bottom, #fcf8d4 0%,#f1da36 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcf8d4', endColorstr='#f1da36',GradientType=0 ); /* IE6-9 */
 }
