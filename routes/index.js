@@ -158,12 +158,23 @@ router.post('/comments/createcomment', function(req, res) {
   var productListOwner = userService.getUserFromUserId(productList.owner_id);
   productDetails.product_list_owner = productListOwner.name;
   var creatorObj = userService.getUserFromUserId(creatorId);  
-  
-  notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
-
-  //TODO: Include RECOMMENT case
-
+  if (productListOwner.id != creatorId) {  
+    notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
+  }
   commentService.createComment(productId, creatorId, content);
+
+  //Get All Comments for this product
+  var comments = commentService.getCommentsGivenProductId(productId);
+  var uniqueIds = commentService.getUniqueSetOfUserIdsFromComments(comments);  
+  
+  uniqueIds.forEach(function(uniqueId, index) {
+    var userId = uniqueId;
+    //Be sure to not include the user who already received the message
+    if (userId != creatorObj.id && userId != creatorId){
+      notificationService.createNotification(userId, "RECOMMENT", creatorObj, productDetails);      
+    }
+  }); 
+ 
   res.status(200).send();
 });
 

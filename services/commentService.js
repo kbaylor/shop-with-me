@@ -22,5 +22,16 @@ module.exports = {
       }
     });
     return commentsForProduct;
+  },
+  getUniqueSetOfUserIdsFromComments: function(commentList) {
+    var userIds = [];
+    var uniqueElements;
+    commentList.forEach(function(comment, index) {
+      userIds.push(comment.creator_id);
+    });
+    var uniqueElements = userIds.filter(function(itm,i,userIds){
+      return i == userIds.indexOf(itm);
+    }); 
+    return uniqueElements;
   }
 };
