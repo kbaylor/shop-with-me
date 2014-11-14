@@ -2,8 +2,11 @@ app.controller('ListsCtrl', ['$scope', '$http', '$routeParams', '$location', 'na
    function($scope, $http, $routeParams, $location, navigationService, authenticationService) {
       
       var user = authenticationService.getCurrentUser();
+      
 
       if ($location.path().indexOf("incoming") != -1) {
+        $scope.incoming = 1;
+        
         navigationService.setTitle("Incoming lists");
         // get lists for user
         $http.get("/productlist/share/user/" + user.id).success(function(data) {
