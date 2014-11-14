@@ -14,7 +14,7 @@ app.controller('ImmersiveListCtrl', ['$scope', '$http', '$location', 'navigation
     });
     
     $scope.addComment = function(commentText, product) {
-      $scope.form.commentForm = null;
+      $scope.commentForm.commentText = "";
       $http.post('/comments/createcomment', {productId: product.id, creatorId: authenticationService.getCurrentUser().id, content: commentText }).success(function(data) {
         for (i=0; i<$scope.products.length; i++) {
           if ($scope.products[i].id == product.id) {
