@@ -1,8 +1,8 @@
-app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', '$timeout', 'navigationService',
-   function($scope, $http, $routeParams, $location, $timeout, navigationService) {   
+app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', '$timeout', 'navigationService', 'authenticationService',
+   function($scope, $http, $routeParams, $location, $timeout, navigationService, authenticationService) {   
       var productListId = $routeParams.listId;
       var isMyList;
-      $scope.userId = 1;   
+      $scope.userId = authenticationService.getCurrentUser().id;   
 
       // current voting index.
       $scope.currentIndex = 0;
