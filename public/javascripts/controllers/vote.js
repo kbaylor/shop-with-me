@@ -1,6 +1,7 @@
-app.controller('VoteCtrl', ['$scope', '$http', '$routeParams', '$timeout', 'navigationService',
-  function($scope, $http, $routeParams, $timeout, navigationService) {
-    var productListId = $routeParams.listId;
+app.controller('VoteCtrl', ['$scope', '$http', '$routeParams', '$timeout', 'navigationService', 'authenticationService',
+  function($scope, $http, $routeParams, $timeout, navigationService, authenticationService) {
+    var productListId = $routeParams.listId,
+      user = authenticationService.getCurrentUser();
     
     $scope.currentIndex = 0;
 
@@ -15,7 +16,7 @@ app.controller('VoteCtrl', ['$scope', '$http', '$routeParams', '$timeout', 'navi
       $scope.products = products;
       
       $timeout(function(){
-        initSwiper($scope);
+        initSwiper($scope, user);
       });        
     });    
     
@@ -25,10 +26,10 @@ app.controller('VoteCtrl', ['$scope', '$http', '$routeParams', '$timeout', 'navi
   }
 ]);
 
-var initSwiper = function($scope) {
+var initSwiper = function($scope, user) {
   var scope = $scope;
   $(function() {
-    var currentUser = "3";
+    var currentUser = user.id;
     $(".metadata" + scope.currentIndex).show();
     $(".productContainer").swipe({
       swipe: function(event, direction, distance, duration, fingerCount) {
@@ -98,8 +99,8 @@ var initSwiper = function($scope) {
         error: function(err) {
           console.log(err);
         }
-      })
-    }
+      });
+    };
 
   });
 };
