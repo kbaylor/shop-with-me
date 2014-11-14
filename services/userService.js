@@ -1,9 +1,10 @@
 var users = require('../data/users.json');
+var productService = require('../services/productService.js');
+var productListService = require('../services/productListService.js');
 
 module.exports = {
   getFriendsGivenUserId: function(userId) {
     var friends = [];
-    console.log(userId);
     users.forEach(function(user, index) {
       if (user.id == userId) {
         //Get the array of friends for the user passed in
@@ -17,6 +18,13 @@ module.exports = {
       }
     });
     return friends;
+  },
+  getUserIdFromProductId : function(productId) {
+    var product = productService.getProductGivenProductId(productId);
+    var productListId = product.product_list_id;
+    console.log (productListId);
+    var productList = productListService.getProductListGivenProductListId(productListId);
+    return productList.owner_id; 
   }
 }
 var getUserGivenUserId = function(userId) {

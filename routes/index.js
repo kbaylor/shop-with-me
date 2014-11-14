@@ -50,6 +50,12 @@ router.get('/productlist/share/user/:userId', function(req, res) {
   res.json(productListService.getSharedProductLists(userId));
 });
 
+router.get('/productlist/share/notshared/user/:userId', function(req, res) {
+  var userId = req.params.userId;
+  
+  res.json(productListService.getUnSharedProductLists(userId));
+});
+
 router.post('/productlist/removeproduct', function(req, res) {
   var productId = parseInt(req.body.productId);
   
@@ -76,6 +82,16 @@ router.get('/vote', function(req, res) {
   res.json(voteService.getAllVotes());
 });
 
+router.post('/vote/finish', function(req, res) {
+  var productListId = parseInt(req.body.productListId);
+  var voterId = parseInt(req.body.voterId);
+
+  productListService.updateSharedProductListToFinishedForUser(productListId, voterId);
+  
+  //TODO: Redirect to another page
+  res.status(200).send();
+});
+
 /* Comment Endpoints */
 router.get('/comments/product/:productId', function(req, res) {
   var productId = req.params.productId;
@@ -87,6 +103,11 @@ router.post('/comments/createcomment', function(req, res) {
   var productId = parseInt(req.body.productId);
   var creatorId = parseInt(req.body.creatorId);
   var content = req.body.content;
+  
+  var ownerId = userService.getUserIdFromProductId(productId);
+  var notificationContent = "USER blank has commented on a product you have on your list!" 
+
+  notificationService.createNotification(ownerId, "COMMENT", notificationContent, productId);
 
   commentService.createComment(productId, creatorId, content);
   res.status(200).send();

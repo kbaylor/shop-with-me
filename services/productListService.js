@@ -18,11 +18,35 @@ module.exports = {
       if (sharedProductList.user_id == userId){
         //We found a match, so get the productList with this Id
         var productList = getProductListFromId(sharedProductList.product_list_id);
+        productList.done_voting = sharedProductList.done_voting;
         sharedProductListsRet.push(productList);
       }
     });
     return sharedProductListsRet;
   },
+  getUnSharedProductLists: function(userId) {
+    var unSharedProductListsRet = [];
+    sharedProductLists.forEach(function(sharedProductList, index) {
+      if (sharedProductList.user_id != userId){
+        //We found a list the user isn't shared, so get the productList with this Id
+        var productList = getProductListFromId(sharedProductList.product_list_id);
+        productList.done_voting = sharedProductList.done_voting;
+        unSharedProductListsRet.push(productList);
+      } 
+    });
+    return unSharedProductListsRet;
+  },
+  getProductListGivenProductListId : function(productListId){
+    return getProductListFromId(productListId);
+  },
+  updateSharedProductListToFinishedForUser : function(productListId, userId){
+    sharedProductLists.forEach(function(sharedProductList, index) { 
+      if (sharedProductList.product_list_id == productListId &&
+          sharedProductList.user_id == userId) {
+        sharedProductList.done_voting = 1;        
+      }
+    }); 
+  }, 
   deleteProductFromProductList: function(productId) {
     var products = productService.getAllProducts();
     //Get the productIndex and remove that product from the list

@@ -11,13 +11,14 @@ module.exports = {
     });
     return userNotifications;
   },
-  createNotification: function(userId, type, relatedId) {
+  createNotification: function(userId, type, content, relatedId) {
     var notification = {};
     notification.user_id = userId;
     notification.related_id = relatedId;
     notification.type = type;
     notification.id = notificationIncrementId;
     notificationIncrementId ++;
+    notification.content = content;
 
     notifications.push(notification);
   }
