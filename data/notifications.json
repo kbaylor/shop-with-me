@@ -1,0 +1,14 @@
+[  
+   {  
+      "id":1,
+      "type":"PRODUCT_COMMENT",
+      "user_id":1,
+      "related_id":1
+   },
+   {  
+      "id":2,
+      "type":"SHARE",
+      "user_id":2,
+      "related_id":1
+   }
+]
