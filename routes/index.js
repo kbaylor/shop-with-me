@@ -132,7 +132,15 @@ router.post('/vote/finish', function(req, res) {
   var voterId = parseInt(req.body.voterId);
 
   productListService.updateSharedProductListToFinishedForUser(productListId, voterId);
-  
+ 
+  //Create Notification to ProductlistOwner
+  var productList = productListService.getProductListGivenProductListId(product.product_list_id)
+  var creatorObj = userService.getUserFromUserId(voterId);
+
+  var productListOwner = userService.getUserFromUserId(productList.owner_id);
+
+  notificationService.createNotification(productListOwner.id, "COMPLETE", creatorObj, productList);   
+ 
   //TODO: Redirect to another page
   res.status(200).send();
 });

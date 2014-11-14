@@ -5,7 +5,7 @@ app.controller('NotificationsCtrl', ['$scope', '$http', 'authenticationService',
 
     $http.get("/notifications/user/" + user.id).success(function(data) {
       $scope.notifications = data;
-      if (1) {
+      if (0) {
         $scope.notifications = [
           {
             type: 'SHARE',
