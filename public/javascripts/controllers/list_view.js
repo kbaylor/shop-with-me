@@ -102,6 +102,10 @@ var initSwiper = function($scope) {
     $(".productContainer").swipe({
       swipe: function(event, direction, distance, duration, fingerCount) {
         if (duration > 200 && distance > 200) {
+          $scope.$apply(function() {
+            $scope.duration = duration;
+            $scope.distance = distance;
+          });
           var product = scope.nonvotedProducts[scope.currentIndex];
 
           if (product.comment) {
