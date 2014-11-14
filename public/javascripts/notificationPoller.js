@@ -1,5 +1,4 @@
 (function(app) {
-	var lastCheckedUpdate = new Date();
 	var currentUser = undefined;
 	var currentUserInLocalStorage = undefined;
 	function updateNotificationTab(numberOfNotifications) {
@@ -39,7 +38,7 @@
 				console.log(err);
 			}
 		});
-	}, 1000);
+	}, 10000);
 	$(document).ready(function() {
 		$("#notificationTab").on('click', function() {
 			$.ajax({
