@@ -51,6 +51,9 @@
       "friends":[  
          {  
             "friend_id":1
+         },
+         {
+            "friend_id":3
          }
       ]
    },

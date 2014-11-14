@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="carouselContainer col-xs-12 vertical-center">
+    <span ng-repeat="product in products" ng-show="product.index == currentIndex">
+      <div id="product{{product.index}}" class="row productContainer">
+        <div class="imageContainer">
+          <div class="negativeVote vertical-center col-xs-1">
+            <i class="fa fa-times" style:"padding:0px"></i>
+          </div>
+          <img class="voteImage col-xs-10 resize img-rounded img-responsive" src="{{product.image_url}}" />
+          <div class="positiveVote vertical-center col-xs-1">
+            <i class="fa fa-heart" style="padding:0px;color:darkred;"></i>
+          </div>
+        </div>
+        <div class="productData row">
+            <div class="description metadata1">
+              <strong>{{product.description}}</strong>
+              <p>Price: <span style="color:green;">{{product.cost | currency:"USD$":2}}</span></p>
+            </div>
+        </div>
+        <div class="input-group comment row">
+          <span class="input-group-addon">
+            <i class="fa fa-comment"></i>
+          </span>
+          <input type="text" ng-model="product.comment" class="form-control" placeholder="Comment here">
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
