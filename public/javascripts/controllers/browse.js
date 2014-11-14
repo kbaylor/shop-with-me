@@ -1,7 +1,7 @@
-app.controller('BrowseCtrl', ['$scope', '$http',
-  function($scope, $http) {
+app.controller('BrowseCtrl', ['$scope', '$http', '$location',
+  function($scope, $http, $location) {
     $scope.test = "Hello World";
-    
+        
     $http.get("/products/all").success(function(data) {
       $scope.products = data;
     });
@@ -10,6 +10,10 @@ app.controller('BrowseCtrl', ['$scope', '$http',
       $scope.lists = data;
       
       for (i=0; i < $scope.lists.length; i++) {
+        if ($scope.lists[i].id == $location.search().selectedListId) {
+          $scope.selectedList = $scope.lists[i];
+        }
+        
         (function(index) {
           $http.get("/productlist/" + $scope.lists[index].id + "/products").success(function(data) {
             $scope.lists[index].products = data;
@@ -58,3 +62,27 @@ app.controller('BrowseCtrl', ['$scope', '$http',
     }
   }
 ]);
+
+app.filter('filterNotOnList', function() {
+  return function(products, selectedList) {
+    var notInSelectedList = [];
+    if (selectedList) {
+      var notInSelectedList = [];
+      for (var i=0; i<products.length; i++) {
+        for (var j=0; j<selectedList.products.length; j++) {
+          var isInList = 0;
+          if (products[i].asin === selectedList.products[j].asin) {
+            isInList = 1;
+            break;
+          }
+        }
+        if (!isInList) {
+          notInSelectedList[notInSelectedList.length] = products[i];
+        }
+      }
+    } else {
+      return products;
+    }
+    return notInSelectedList;
+  }
+});
