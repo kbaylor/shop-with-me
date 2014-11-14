@@ -6,7 +6,9 @@ module.exports = {
     var productListProducts = [];
     products.forEach(function(product, index) {
       if (product.product_list_id == productListId) {
-        productListProducts.push(getProductDetailsForProduct(product));
+        var amazonProduct = getProductDetailsForProduct(product);
+        amazonProduct.votes = product.votes;
+        productListProducts.push(amazonProduct);
       }
     });
     return productListProducts;
