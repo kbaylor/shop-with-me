@@ -58,17 +58,24 @@ app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService
     }
     
     $scope.saveNewList = function(newListTitle) {
-      $scope.modalShown = false;
+      $http.post("productlist/create", {title: newListTitle, ownerId: 1}).success(function(data) {
+        var list = data.list;
+        list.products = [];
+        $scope.lists[$scope.lists.length] = list;
+        $scope.selectedList = list;
+        $scope.modalShown = false;
+      });
     }
     
     $scope.addProductToList = function(product, selectedList) {
-      for (i=0; i < $scope.lists.length; i++) {
-        if ($scope.lists[i].id == selectedList.id) {
-          // found the list
-          $scope.lists[i].products[$scope.lists[i].products.length] = product;
-          break;
+      $http.post("productlist/addproduct", { productListId: selectedList.id, productAsin: product.asin }).success(function() {
+        for (i=0; i < $scope.lists.length; i++) {
+          if ($scope.lists[i].id == selectedList.id) {
+            $scope.lists[i].products[$scope.lists[i].products.length] = product;
+            break;
+          }
         }
-      }
+      });
     }
   }
 ]);

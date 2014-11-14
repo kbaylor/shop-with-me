@@ -7,25 +7,19 @@ app.controller('ListsCtrl', ['$scope', '$http', '$routeParams', '$location', 'na
         $scope.lists = data;
       });
 
-      $scope.removeProduct = function(index) {
-
-         var productId = $scope.products[index].id;
-         $scope.products.splice(index, 1);
+      $scope.deleteList = function(list) {
+        $http.post('/productlist/removeproductlist', { productListId: list.id }).success(function() {
+          for (i=0; i<$scope.lists.length; i++) {
+            if($scope.lists[i].id == list.id) {
+              $scope.lists.splice(i, 1);
+              break;
+            }
+          }
+        });
+      };
       
-         // Service call to delete
-         $http.post('/productlist/removeproduct', { productId: productId });
-      };
-
-      $scope.deleteList = function() {
-         $http.post('/productlist/removeproductlist', { productListId: productListId });
-      };
-
-      $scope.addMore = function() {
-         $location.path('/browse').search({selectedListId: productListId});
-      };
-
-      $scope.share = function() {
-         $location.path('/lists/' + productListId + '/share');
-      };
+      $scope.navigateToListView = function(list) {
+        $location.path('/lists/' + list.id);
+      }
    }
 ]);
