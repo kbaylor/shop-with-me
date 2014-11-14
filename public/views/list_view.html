@@ -1,73 +1,82 @@
 <div>
-  <div class="container-fluid" ng-if="isVoting == false">
-    <div class="scrollable" style="padding-top:56px; padding-bottom:56px">
-      <div class="scrollable-content">
-        <ul class="row view-list">
-          <li class="col-xs-12 list-item swipeable animate-repeat" ng-repeat="product in products | orderBy: product.up_votes - product.down_votes:false" ng-swipe-left="removeProduct(product.id)" ng-click="launchImmersiveView($index)">
-            <div class="row">
-              <div class="col-xs-3">
-                <img ng-src="{{product.image_url}}" class="list-item-image" alt="{{product.title}}" />
-              </div>
-              <div class="col-xs-9 cut-text">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <h5 class="cut-text">{{product.title}}</h5>
-                  </div>
+    <div class="container-fluid" ng-if="isVoting == false">
+        <div class="scrollable" style="padding-top:56px; padding-bottom:79px">
+            <div class="row list-view-share-add-row">
+                <div class="col-xs-6 text-center">
+                    <button type="button" class="btn btn-primary btn-lg" ng-click="addMore()">{{addMoreText}}</button>
                 </div>
-                <div class="row">
-                  <div class="col-xs-12 vote-summary">
-                    <span class="up-vote">{{product.up_votes}} <i class="fa fa-thumbs-up"></i></span> <span class="down-vote">{{product.down_votes}} <i class="fa fa-thumbs-down"></i></span>
-                  </div>
+                <div class="col-xs-6 text-center">
+                    <button type="button" class="btn btn-primary btn-lg" ng-style="{opacity: products.length < 1? '.4' : '1'}" ng-click="share()">Share this list</button>
                 </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <button type="button" class="btn btn-warning" style="margin-top: 15px;" aria-label="Left Align">
-                      <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
-          </li>
-          <li class="list-group-item" ng-if="products.length == 0">
-            <div class="row">
-              <div class="col-xs-12">
-                <span class="glyphicon glyphicon-plus"></span>Add more items to your list
-              </div>
+            <div class="scrollable-content">
+                <ul class="row view-list">
+                    <li class="col-xs-12 list-item swipeable animate-repeat" ng-repeat="product in products | orderBy: product.up_votes - product.down_votes:false" ng-swipe-left="removeProduct(product.id)" ng-click="launchImmersiveView($index)">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img ng-src="{{product.image_url}}" class="list-item-image" alt="{{product.title}}" />
+                            </div>
+                            <div class="col-xs-9 cut-text">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h5 class="cut-text">{{product.title}}</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 vote-summary">
+                                        <span class="up-vote">{{product.up_votes}} <i class="fa fa-thumbs-up"></i>
+                                        </span>
+                                        <span class="down-vote">{{product.down_votes}} <i class="fa fa-thumbs-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <button type="button" class="btn btn-warning" style="margin-top: 15px;" aria-label="Left Align">
+                                            <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="row text-center" ng-if="products.length == 0" style="padding-top:2em">
+                            <i class="fa fa-exclamation-triangle fa-2x"></i><h4>No items found.</h4>
+                    </div>
+                </ul>
             </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-    
-  <div class="container" ng-if="isVoting">
-    <div class="carouselContainer col-xs-12 vertical-center">
-      <span ng-repeat="product in nonvotedProducts" ng-show="product.index == currentIndex">
-        <div id="product{{product.index}}" class="row productContainer">
-          <div class="imageContainer">
-            <div class="negativeVote vertical-center col-xs-1">
-              <i class="fa fa-times" style:"padding:0px"></i>
-            </div>
-            <img class="voteImage col-xs-10 resize img-rounded img-responsive" ng-src="{{product.image_url}}" />
-            <div class="positiveVote vertical-center col-xs-1">
-              <i class="fa fa-heart" style="padding:0px;color:darkred;"></i>
-            </div>
-          </div>
-          <div class="productData row">
-              <div class="description metadata1">
-                <strong>{{product.description}}</strong>
-                <p>Price: <span style="color:green;">{{product.cost | currency:"USD$":2}}</span></p>
-              </div>
-          </div>
-          <div class="input-group comment row">
-            <span class="input-group-addon">
-              <i class="fa fa-comment"></i>
-            </span>
-            <input type="text" ng-model="product.comment" class="form-control" placeholder="Comment here">
-          </div>
         </div>
-      </span>
     </div>
-  </div>    
+
+    <div class="container" ng-if="isVoting">
+        <div class="carouselContainer col-xs-12 vertical-center">
+            <span ng-repeat="product in nonvotedProducts" ng-show="product.index == currentIndex">
+                <div id="product{{product.index}}" class="row productContainer">
+                    <div class="imageContainer">
+                        <div class="negativeVote vertical-center col-xs-1">
+                            <i class="fa fa-times" style: "padding:0px"></i>
+                        </div>
+                        <img class="voteImage col-xs-10 resize img-rounded img-responsive" ng-src="{{product.image_url}}" />
+                        <div class="positiveVote vertical-center col-xs-1">
+                            <i class="fa fa-heart" style="padding:0px;color:darkred;"></i>
+                        </div>
+                    </div>
+                    <div class="productData row">
+                        <div class="description metadata1">
+                            <strong>{{product.description}}</strong>
+                            <p>Price:
+                                <span style="color:green;">{{product.cost | currency:"USD$":2}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="input-group comment row">
+                        <span class="input-group-addon">
+                            <i class="fa fa-comment"></i>
+                        </span>
+                        <input type="text" ng-model="product.comment" class="form-control" placeholder="Comment here">
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
 </div>

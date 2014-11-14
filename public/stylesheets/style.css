@@ -263,3 +263,10 @@ ul.view-list {
     border-top-style: solid;
     border-top-color: black;
 }
+
+.list-view-share-add-row {
+    padding-bottom: .2em;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}

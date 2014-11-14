@@ -24,6 +24,7 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
         
         if (isMyList) {
           $scope.isVoting = false;
+          $scope.addMoreText = ($scope.products.length < 1)? "add first product" : "add more products";
         } else {
           $http.get('/vote/nonvotedproducts/productlist/' + productListId + '/user/' + $scope.userId).success(function(nonvotedProducts) {
             var count = 0;
@@ -50,7 +51,9 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
          });
 
          $scope.products.splice(productIndex, 1);
-      
+         if ($scope.products.length < 1){
+            $scope.addMoreText = "add first product";
+         }
          // Service call to delete
          $http.post('/productlist/removeproduct', { productId: productId });
       };
@@ -66,25 +69,16 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       };
 
       $scope.share = function() {
-        $timeout(function () {
-         $location.path('/lists/' + productListId + '/share');
-       });
+        if($scope.products.length > 0) {
+          $timeout(function () {
+           $location.path('/lists/' + productListId + '/share');
+         });
+        }
       };
       
       $scope.launchImmersiveView = function(index) {
         $location.path('/lists/' + productListId + '/' + index);
       }
-
-      navigationService.setButtons([
-         {
-           text: 'Add',
-           handler: $scope.addMore
-         },
-         {
-           text: 'Share',
-           handler: $scope.share
-         }
-      ]);
       
       /** Vote code **/
       $scope.handleSuccess = function() {
