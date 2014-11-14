@@ -8,6 +8,7 @@ module.exports = {
       if (product.product_list_id == productListId) {
         var amazonProduct = getProductDetailsForProduct(product);
         amazonProduct.votes = product.votes;
+        amazonProduct.id = product.id;
         productListProducts.push(amazonProduct);
       }
     });

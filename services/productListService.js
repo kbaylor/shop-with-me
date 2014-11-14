@@ -1,5 +1,6 @@
 var productLists = require('../data/product_lists.json');
 var sharedProductLists = require('../data/product_list_share.json');
+var productService = require('../services/productService.js');
 
 module.exports = {
   getOwnedProductLists: function(userId) {
@@ -12,20 +13,38 @@ module.exports = {
     return userProductLists;
   },
   getSharedProductLists: function(userId) {
-    //Not Tested
     var sharedProductListsRet = [];
     sharedProductLists.forEach(function(sharedProductList, index) {
       if (sharedProductList.user_id == userId){
         //We found a match, so get the productList with this Id
-        var productList = getProductListsFromId(sharedProductList.product_list_id);
+        var productList = getProductListFromId(sharedProductList.product_list_id);
         sharedProductListsRet.push(productList);
       }
     });
     return sharedProductListsRet;
+  },
+  deleteProductFromProductList: function(productId) {
+    var products = productService.getAllProducts();
+    //Get the productIndex and remove that product from the list
+    var productIndex = getProductIndexFromProductList(products, productId);
+    if (productIndex != -1){
+      products.splice(productIndex, 1);
+    }
   }
 }
 
-var getProductListsFromId = function(productListId){
+var getProductIndexFromProductList = function(products, productId) {
+  var productIndexRet = -1;
+  products.forEach(function(product, index) {
+    if (product.id == productId) {
+      productIndexRet = index;
+      return;
+    }
+  });
+  return productIndexRet;
+}
+
+var getProductListFromId = function(productListId){
   var productListRet;
   productLists.forEach(function(productList, index) {
     if (productList.id == productListId){
