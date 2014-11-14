@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vote View</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css' type='text/css' />
+    <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css' type='text/css' />
+    <script src='/bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='/bower_components/bootstrap/dist/js/bootstrap.min.js'></script> 
+    <script src='/bower_components/jquery-touchswipe/jquery.touchSwipe.min.js'></script> 
+    <script type='text/javascript'>
+      
+      $(function() {
+        var currentItem = 1;
+        var products = <%-JSON.stringify(products)%>;
+        var currentUser = <%-JSON.stringify(currentUser)%>;
+        $(".metadata" + currentItem).show();
+        $(".productContainer").swipe({
+          swipe: function(event, direction, distance, duration, fingerCount) {
+            if (duration > 200 && distance > 200) {
+              var product = products[currentItem - 1];
+              var comment = document.getElementById("commentField" + currentItem);
+              console.log(comment);
+              if (comment.value) {
+                $.ajax({
+                  url: "/comments/createcomment",
+                  type: "POST",
+                  data: {
+                    productId: product.productId,
+                    creatorId: currentUser,
+                    content: comment.value
+                  },
+                  error: function(err) {
+                    console.log(err);
+                  }
+                });
+              }
+              var options = {
+                opacity:'0.2',
+                height:'100px',
+                width:'100px',
+                borderColor:'white'
+              };
+              if (direction === 'left') {
+                options.marginLeft = '-=400px';
+                castVote(product.productId, currentUser, -1);
+              } else {
+                options.marginLeft = '+=400px';
+                castVote(product.productId, currentUser, 1);
+              }
+              this.animate(options, 400, function() {
+                $("#product" + (currentItem - 1)).hide();
+                $("#product" + currentItem).fadeIn();
+              });
+              currentItem += 1;
+              
+            }
+            if (currentItem == <%= products.length %>) {
+              $.ajax({
+                url: "/vote/finish",
+                type: "POST",
+                error: function(err) {
+                  console.log(err);
+                }
+              })
+            }
+          }
+        });
+
+        function castVote(productID, decision) {
+          $.ajax({
+            url: "/vote/performvote",
+            type: "POST",
+            data: {
+              productId: productID,
+              voterId: currentUser,
+              vote: decision
+            },
+            error: function(err) {
+              console.log(err);
+            }
+          })
+        }
+
+      });
+    </script>
+    <style>
+    	.fl {
+        float: left;
+      }
+
+      .fr {
+        float: right;
+      }
+
+      .productContainer {
+        width: 70%;
+        margin-top: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: #909090;
+        vertical-align: center;
+      }
+
+      .imageContainer {
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 20px;
+        height: 40vh;
+      }
+
+      .carouselContainer {
+        padding: 0px;
+      }
+
+      .negativeVote {
+        padding-left: 10px;
+        padding-right: 20px;
+      }
+
+      .positiveVote {
+        padding-left: 5px;
+        padding-right: 20px;
+        color: darkred;
+      }
+
+      .productData {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        margin-bottom: 75px;
+      }
+
+      .voteImage {
+        height: 100%;
+        padding: 0px;
+      }
+
+      .comment {
+        position: absolute;
+        bottom: 0px;
+        margin: 7px;
+      }
+
+      .vertical-center {
+        min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+
+        display: flex;
+        align-items: center;
+      }
+    </style>
+    
+  </head>
+  <body style="background-color:#F8F8F8">
+  	<div class="container">
+      <div class="carouselContainer col-xs-12 vertical-center">
+        <% for (var i = 0; i < products.length; i++) { %>
+          <div id="product<%= i + 1 %>" class="row productContainer" style="<%= (i !== 0) ? 'display:none;' : '' %>">
+            <div class="imageContainer">
+              <div class="negativeVote vertical-center col-xs-1">
+                <span class="glyphicon glyphicon-remove" style:"padding:0px" />
+              </div>
+              <img class="voteImage col-xs-10 resize img-rounded img-responsive" src="<%= products[i].image %>" />
+              <div class="positiveVote vertical-center col-xs-1">
+                <span class="glyphicon glyphicon-heart" style:"padding:0px;color:darkred;"/>
+              </div>
+            </div>
+            <div class="productData row">
+                <div class="description metadata<%= i + 1 %>">
+                  <strong><%= products[i].description %></strong>
+                  <p>Price: <span style="color:green;">$<%= products[i].price.toFixed(2) %></span></p>
+                </div>
+            </div>
+            <div class="input-group comment row">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-comment"></span>
+              </span>
+              <input type="text" id="commentField<%= i + 1 %>" class="form-control" placeholder="Comment here">
+            </div>
+          </div>
+        <% } %>
+      </div>
+      
+	  </div>
+  </body>
+</html>
