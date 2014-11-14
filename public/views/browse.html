@@ -54,8 +54,8 @@
   <modal-dialog show='modalShown' width='50%' height='30%'>
     <h4>Create new list...</h4>
     <form name="createListForm">
-      <input type="text" class="form-control" placeholder="Title" ng-model="newListTitle" required />
-      <button ng-disabled="createListForm.$invalid" type="button" class="btn btn-default form-control" role="button" ng-click="saveNewList(newListTitle)">Save</button>
+      <input type="text" class="form-control" placeholder="Title" ng-model="newListForm.newListTitle" required />
+      <button ng-disabled="createListForm.$invalid" type="button" class="btn btn-default form-control" role="button" ng-click="saveNewList(newListForm.newListTitle)">Save</button>
     </form>
   </modal-dialog>
 </div>

@@ -1,34 +1,41 @@
-<div style="height:100%;overflow-y: scroll">
-  <div ng-repeat="product in products">
-    <div class="productBox container">
-        <div class="centerBlock">
-            <img class="productImage" alt="Nautica Men's Striped J-Class T Shirt, Sunrise Red, Small" src="{{product.image_url}}">
+<div style="height:100%;overflow-y: scroll;overflow-x: hidden">
+  <div ng-repeat="product in products" style="border-bottom: 1px solid #EEE">
+    <br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <img class="img-responsive" ng-src="{{product.image_url}}" style="max-height:200px;margin: 0 auto">
         </div>
-        <div class="productTitle gray-lighter">
-            {{product.title}}
+      </div>
+      
+      <div class="row">
+        <div class="col-xs-9">
+          <h4>{{product.title}}</h4>
         </div>
-        <div class="divider"></div>
-        <div class="likes">
-            <div class="iconColumn"><div class="heart"></div></div>
-            <div class="commentColumn">19 likes</div>
+        <div class="col-xs-3">
+          <span class="up-vote">{{product.up_votes}} <i class="fa fa-thumbs-up"></i></span> <span class="down-vote">{{product.down_votes}} <i class="fa fa-thumbs-down"></i></span>
+        </div>   
+      </div>
+      
+      <div class="row" ng-repeat="comment in product.comments">
+        <div class="col-xs-12">
+          <small>{{comment.content}} - {{comment.creator.name}}</small>
         </div>
-        <div class="comments">
-            <div class="iconColumn"><div class="commentImage"></div></div>
-            <a href="#">Liem</a> that's disgusting
-        </div>
-        <div class="comments">
-            <div class="iconColumn">&nbsp;</div>
-            <div class="commentColumn"><a href="#">Amin</a> Agreed</div>
-        </div>
-        <div class="comments">
+      </div>       
+
+      <div class="row">
+        <div class="col-xs-12">
+          <form name="commentForm" class="form-inline">
             <div class="input-group">
-                <input type="search" class="form-control" placeholder="Write a comment...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Send</button>
-                </span>
+              <input type="text" class="form-control" placeholder="Add a comment..." ng-model="commentForm.commentText" required>
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" ng-disabled="commentForm.$invalid" ng-click="addComment(commentForm.commentText, product)">Send</button>
+              </span>
             </div>
+          </form>
         </div>
+      </div>
     </div>
-    <div class="darkDivider"></div>
+    <br>
   </div>
 </div>
