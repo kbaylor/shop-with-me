@@ -16,13 +16,29 @@ module.exports = {
   },
   getAllVotes: function() {
     return userVotes;
+  },
+  getProductsNotVotedGivenProductList: function (productListId, userId) {
+    var nonVotedProducts = [];
+    var products = productService.getProductsForProductListId(productListId);
+    products.forEach(function(product, index) {
+      var userVoted = false;
+      userVotes.forEach(function(userVote, index) {
+        if (userVote.product_id == product.id && userVote.user_id == userId) {
+          userVoted = true;
+        }
+      });
+      if (userVoted == false){
+        nonVotedProducts.push(product);
+      }
+    });
+    return nonVotedProducts; 
   }
 }
 
 var createUserVoteEntry = function(productId, voterId, voteAmount) {
   var userVote = {}; 
   userVote.user_id = voterId;
-  userVote.voteAmount = voteAmount;
+  userVote.vote_amount = voteAmount;
   userVote.product_id = productId;
   userVote.id = voteIncrementId;
   voteIncrementId ++;

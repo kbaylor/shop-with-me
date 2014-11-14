@@ -108,6 +108,13 @@ router.get('/vote', function(req, res) {
   res.json(voteService.getAllVotes());
 });
 
+router.get('/vote/nonvotedproducts/productlist/:productListId/user/:userId', function (req, res) {
+  var productListId = req.params.productListId;
+  var userId = req.params.userId;
+
+  res.json(voteService.getProductsNotVotedGivenProductList(productListId, userId));
+});
+
 router.post('/vote/finish', function(req, res) {
   var productListId = parseInt(req.body.productListId);
   var voterId = parseInt(req.body.voterId);

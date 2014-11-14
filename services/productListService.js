@@ -3,6 +3,7 @@ var productLists = require('../data/product_lists.json');
 var sharedProductLists = require('../data/product_list_share.json');
 var productService = require('../services/productService.js');
 var userService = require('../services/userService.js');
+var voteService = require('../services/voteService.js');
 var productListIncrementId = 1000;
 
 module.exports = {
