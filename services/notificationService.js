@@ -20,7 +20,7 @@ module.exports = {
     notification.actor = actorObject;
     notification.related_object = relatedObject;
     notification.created_date = new Date();
-    
+    console.log(notification);
     notifications.push(notification);
   }
 }

@@ -4,6 +4,7 @@ var sharedProductLists = require('../data/product_list_share.json');
 var productService = require('../services/productService.js');
 var userService = require('../services/userService.js');
 var voteService = require('../services/voteService.js');
+var notificationService = require('../services/notificationService.js');
 var productListIncrementId = 1000;
 var sharedProductListIncrement = 1000;
 
@@ -114,7 +115,6 @@ module.exports = {
     return getProductListFromId(productListId);
   },
   shareList: function(productListId, friendIdList) {
-    console.log(friendIdList.length);
     friendIdList.forEach(function(friendId, index) {
       var sharedProductList = {};
       sharedProductList.id = sharedProductListIncrement;
@@ -122,8 +122,16 @@ module.exports = {
       sharedProductList.product_list_id = productListId;
       sharedProductList.user_id = friendId.friend_id; 
       sharedProductList.done_voting = 0;
-      console.log(sharedProductList);
       sharedProductLists.push(sharedProductList);
+
+      //Send Notification to User about the share
+      var productList = getProductListFromId(productListId);
+      var productListOwner = userService.getUserFromUserId(productList.owner_id);
+      console.log(productList.owner_id);
+      var creatorObj = userService.getUserFromUserId(friendId.friend_id);
+      console.log(creatorObj.id);
+      productList.product_list_owner = productListOwner.name;
+      notificationService.createNotification(creatorObj.id, "SHARE", creatorObj, productList); 
     });
   },
   getAllShares: function(){
