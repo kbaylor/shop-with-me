@@ -5,6 +5,7 @@ var productService = require('../services/productService.js');
 var userService = require('../services/userService.js');
 var voteService = require('../services/voteService.js');
 var productListIncrementId = 1000;
+var sharedProductListIncrement = 1000;
 
 module.exports = {
   deleteProductList: function(productListId) {
@@ -111,6 +112,22 @@ module.exports = {
   },
   getProductList: function(productListId) {
     return getProductListFromId(productListId);
+  },
+  shareList: function(productListId, friendIdList) {
+    console.log(friendIdList.length);
+    friendIdList.forEach(function(friendId, index) {
+      var sharedProductList = {};
+      sharedProductList.id = sharedProductListIncrement;
+      sharedProductListIncrement++;
+      sharedProductList.product_list_id = productListId;
+      sharedProductList.user_id = friendId.friend_id; 
+      sharedProductList.done_voting = 0;
+      console.log(sharedProductList);
+      sharedProductLists.push(sharedProductList);
+    });
+  },
+  getAllShares: function(){
+    return sharedProductLists;
   }
 };
 

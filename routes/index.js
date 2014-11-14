@@ -56,6 +56,19 @@ router.get('/productlist/:productListId/findunshared/user/:userId', function(req
   res.json(friendsToShare);
 });
 
+router.post('/productlist/sharelist', function(req, res) {
+  var productListId = parseInt(req.body.productListId);
+  var friends = JSON.parse(req.body.friends);
+  console.log(friends);
+  productListService.shareList(productListId, friends);
+
+  res.status(200).send();
+});
+
+router.get('/productlist/share/all', function(req, res) {
+  res.json(productListService.getAllShares());
+});
+
 router.get('/productlist/share/notshared/user/:userId', function(req, res) {
   var userId = req.params.userId;  
   res.json(productListService.getUnSharedProductLists(userId));
