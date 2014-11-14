@@ -25,6 +25,9 @@ module.exports = {
     console.log (productListId);
     var productList = productListService.getProductListGivenProductListId(productListId);
     return productList.owner_id; 
+  },
+  getUserFromUserId: function(userId) {
+    return getUserGivenUserId(userId);
   }
 }
 var getUserGivenUserId = function(userId) {

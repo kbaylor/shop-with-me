@@ -17,6 +17,9 @@
         <div class="col-xs-6">
           <h4 class="cut-text">{{product.title}}</h4>
           <p class="cut-text">{{product.description}}</p>
+          <ul>
+            <li ng-repeat="comment in product.comments">{{comment.creator.name}}: {{comment.content}}</li>
+          </ul>
         </div>
         <div class="col-xs-3">
           <span class="text-success">2 <i class="fa fa-thumbs-up"></i></span>, <span class="text-error">7 <i class="fa fa-thumbs-down"></i></span>
