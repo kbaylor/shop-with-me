@@ -1,7 +1,7 @@
 app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', '$timeout', 'navigationService', 'authenticationService',
    function($scope, $http, $routeParams, $location, $timeout, navigationService, authenticationService) {   
       var productListId = $routeParams.listId;
-      var isMyList;
+      $scope.isMyList;
       $scope.userId = authenticationService.getCurrentUser().id;   
 
       // current voting index.
@@ -16,14 +16,14 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       
       // Service call to get the list & list items
       $http.get('/productlist/' + productListId).success(function(productList) {
-        isMyList = productList.owner_id == $scope.userId;
+        $scope.isMyList = productList.owner_id == $scope.userId;
         navigationService.setTitle(productList.title);
       });
 
       $http.get('/productlist/' + productListId + '/products').success(function(products) {
         $scope.products = products;
         
-        if (isMyList) {
+        if ($scope.isMyList) {
           $scope.isVoting = false;
           $scope.addMoreText = ($scope.products.length < 1)? "add first product" : "add more products";
         } else {
