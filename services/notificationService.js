@@ -1,15 +1,9 @@
-var notifications = [];
+var notifications = {};
 var notificationIncrementId = 1;
 
 module.exports = {
   getNotificationsGivenUserId: function(userId) {
-    var userNotifications = [];
-    notifications.forEach(function(notification, index) {
-      if (notification.user_id == userId) {
-        userNotifications.push(notification);
-      }
-    });
-    return userNotifications;
+    return notifications[userId];
   },
   createNotification: function(userId, type, actorObject, relatedObject) {
     var notification = {};
@@ -20,7 +14,16 @@ module.exports = {
     notification.actor = actorObject;
     notification.related_object = relatedObject;
     notification.created_date = new Date();
-    console.log(notification);
-    notifications.push(notification);
+    notifications.acknowledged = false;
+    if (!notifications[userId]) {
+      notifications[userId] = [];
+    }
+    notifications[userId].push(notification);
+  },
+  acknowledgeNotifications: function(userId) {
+    var userNotifications = notifications[userId] || [];
+    userNotifications.forEach(function(notification) {
+      notification.acknowledged = true;
+    });
   }
 }
