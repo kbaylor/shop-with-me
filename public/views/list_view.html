@@ -49,9 +49,7 @@
     </div>
   </div>
     
-  <div class="container" ng-if="isVoting">
-    <div style="font-weight:bold;font-size:18px">{{duration}}, {{distance}}</div>
-  
+  <div class="container" ng-if="isVoting">  
     <div class="carouselContainer col-xs-12 vertical-center">
       <span ng-repeat="product in nonvotedProducts" ng-show="product.index == currentIndex">
         <div id="product{{product.index}}" class="row productContainer">
