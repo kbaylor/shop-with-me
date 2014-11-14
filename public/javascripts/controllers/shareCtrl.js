@@ -1,5 +1,5 @@
-app.controller('ShareCtrl', ['$scope', '$http', '$routeParams', 'navigationService', 'authenticationService',
-    function($scope, $http, $routeParams, navigationService, authenticationService) {
+app.controller('ShareCtrl', ['$scope', '$http', '$routeParams',  '$location', '$timeout', 'authenticationService',
+    function($scope, $http, $routeParams,  $location, $timeout, authenticationService) {
 
         var user = authenticationService.getCurrentUser();
         $scope.id = $routeParams.listId;
@@ -53,7 +53,9 @@ app.controller('ShareCtrl', ['$scope', '$http', '$routeParams', 'navigationServi
                     "friends": shares
                 };
                 $http.post('/productlist/sharelist', x);
-                navigationService.goBack();
+                $timeout(function () {
+                    $location.path('/lists/' + $scope.id);
+                }
             }
         }
     }
