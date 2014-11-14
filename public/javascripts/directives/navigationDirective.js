@@ -26,11 +26,3 @@ app.directive('swmNavigationClearHistory', function (navigationService) {
   };
 });
 
-  app.directive('swmNavigationRightText', function (navigationService) {
-  return {
-    restrict: "A",
-    link: function(scope, element, attrs, controllers) {
-      navigationService.setRightText(attrs['swmNavigationRightText']);
-    }
-  };
-});
