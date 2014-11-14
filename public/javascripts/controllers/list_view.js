@@ -32,11 +32,6 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
             $.each(nonvotedProducts, function(i, product) { product.index = count++ });
             $scope.nonvotedProducts = nonvotedProducts;
             $scope.isVoting = nonvotedProducts.length > 0;
-            if ($scope.isVoting) {
-              $timeout(function(){
-                initSwiper($scope);
-              });  
-            }
           });
         }
       });
