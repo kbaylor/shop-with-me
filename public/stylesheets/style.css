@@ -82,12 +82,12 @@ ul.view-list {
 
 .list-item {
   width: 100%;  
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #ddd;
   padding: 10px;
 }
 
 .list-item:first-child {
-  border-top: 2px solid #000;
+  border-top: 2px solid #ddd;
 }
 
 .list-item.ng-click-active {
@@ -100,6 +100,21 @@ ul.view-list {
 
 .list-view-item:hover {
   background-color: #f5f5f5;
+}
+
+.comment-list {
+  margin-top: 10px;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.comment-list-item {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment-list-item:first-child {
+  border-top: 1px solid #ccc;
 }
 
 .cut-text {
