@@ -3,12 +3,19 @@ app.service('navigationService', function($rootScope, $location){
   var _title = '';
   var _goingBack = false;
   var _buttons = [];
+  var _setNextRouteChangeAsRoot = false;
+  var self = this;
   
   $rootScope.$on('$locationChangeSuccess', function(event) {
     if (_goingBack) {
       _goingBack = false;
     } else {
       _history.push($location.url());
+    }
+    
+    if (_setNextRouteChangeAsRoot) {
+      _setNextRouteChangeAsRoot = false;
+      self.clearHistory();
     }
   });
 
@@ -30,6 +37,10 @@ app.service('navigationService', function($rootScope, $location){
       $location.url(_history[_history.length - 1]);
     }
   };
+  
+  this.setNextRouteChangeAsRoot = function() {
+    _setNextRouteChangeAsRoot = true;
+  }
   
   this.setTitle = function(title) {
     _title = title;
