@@ -71,12 +71,13 @@ module.exports = {
   },
   getFriendsToShareList: function(productListId, ownerId) {
     var friendsToShare = [];
-    var friends = userService.getFriendsGivenUserId(ownerId); 
+    var friends = userService.getFriendsGivenUserId(ownerId);
     var friendIdsShared = getSharedFriendsForProductList(productListId);
     friends.forEach(function(friend, index) {
       var friendIdToCheck = friend.id;
       var friendShared = false;
       friendIdsShared.forEach(function(friendIdShared, index) { 
+        console.log(friendIdToCheck + " " + friendIdShared);
         //We found a productlist that has been shared
         if (friendIdToCheck == friendIdShared){
            friendShared = true;
@@ -126,6 +127,7 @@ var getProductIndexFromProductList = function(products, productId) {
 var getSharedFriendsForProductList = function (productListId) {
   var sharedFriendIds = [];
   sharedProductLists.forEach(function(sharedProductList, index) {  
+    console.log(sharedProductList.product_list_id);
     if (productListId == sharedProductList.product_list_id){
       sharedFriendIds.push(sharedProductList.user_id);
     }

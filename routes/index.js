@@ -49,12 +49,10 @@ router.get('/productlist/share/user/:userId', function(req, res) {
   res.json(productListService.getSharedProductLists(userId));
 });
 
-router.get('/productlist/:productListId/findunshared/user/:userid', function(req, res) {
+router.get('/productlist/:productListId/findunshared/user/:userId', function(req, res) {
   var productListId = req.params.productListId;
   var userId = req.params.userId;
-  
   var friendsToShare = productListService.getFriendsToShareList(productListId, userId);
-  console.log(friendsToShare);
   res.json(friendsToShare);
 });
 

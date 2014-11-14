@@ -4,6 +4,7 @@ module.exports = {
   getFriendsGivenUserId: function(userId) {
     var friends = [];
     users.forEach(function(user, index) {
+      console.log(userId);
       if (user.id == userId) {
         // Get the array of friends for the user passed in
         var userFriends = user.friends;
@@ -11,7 +12,6 @@ module.exports = {
           var friend = getUserObjGivenUserId(friend.friend_id);
           friends.push(friend);
         }); 
-        return;
       }
     });
     return friends;
