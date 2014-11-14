@@ -6,6 +6,7 @@ var productService = require('../services/productService.js');
 var productListService = require('../services/productListService.js');
 var voteService = require('../services/voteService.js');
 var commentService = require('../services/commentService.js');
+var userService = require('../services/userService.js');
 
 // Let's get all of our query parameters
 var url = require('url');
@@ -25,7 +26,7 @@ router.get('/individual-item-view', function(req, res) {
 });
 
 
-/* GET JSON Endpoints */
+/* JSON Endpoints */
 
 /* Product Endpoints */
 router.get('/productlist/:productListId/products', function(req, res) {
@@ -80,7 +81,14 @@ router.post('/comments/createComment', function(req, res) {
 });
 
 
-/* END GET JSON Endpoints */
+/* User Endpoints */
+router.get('/user/:userId/friends', function(req, res) {
+  var userId = req.params.userId;
+  
+  res.json(userService.getFriendsGivenUserId(userId));
+});
+
+/* END JSON Endpoints */
 
 var getQueryParams = function(request) {
     var url_parts = url.parse(request.url, true);
