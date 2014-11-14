@@ -160,7 +160,7 @@ router.post('/comments/createcomment', function(req, res) {
   if (productListOwner.id != creatorId) {  
     notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
   }
-  commentService.createComment(productId, creatorId, content);
+  var comment = commentService.createComment(productId, creatorId, content);
 
   //Get All Comments for this product
   var comments = commentService.getCommentsGivenProductId(productId);
@@ -174,7 +174,7 @@ router.post('/comments/createcomment', function(req, res) {
     }
   }); 
  
-  res.status(200).send();
+  res.status(200).json(comment).send();
 });
 
 /* User Endpoints */
@@ -185,15 +185,19 @@ router.get('/users', function(req, res) {
 
 router.get('/users/:userId/friends', function(req, res) {
   var userId = req.params.userId;
-  
   res.json(userService.getFriendsGivenUserId(userId));
 });
 
 /* Notification Endpoints */
 router.get('/notifications/user/:userId', function(req, res) {
-  var userId = req.params.userId;
-  
+  var userId = req.params.userId; 
   res.json(notificationService.getNotificationsGivenUserId(userId));
+});
+
+router.post('/notifications/user/:userId/acknowledge', function(req, res) {
+  var userId = req.params.userId;
+  notificationService.acknowledgeNotifications(userId);
+  res.status(200).send();
 });
 
 /* END JSON Endpoints */

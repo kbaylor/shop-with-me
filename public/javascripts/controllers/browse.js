@@ -1,6 +1,6 @@
 app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService', 'authenticationService',
   function($scope, $http, $location, navigationService, authenticationService) {
-    $scope.test = "Hello World";
+    $scope.newListForm = { newListTitle: "" };
     
     var currentUser = authenticationService.getCurrentUser();
 
@@ -60,6 +60,7 @@ app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService
     }
     
     $scope.saveNewList = function(newListTitle) {
+      $scope.newListForm.newListTitle = "";
       $http.post("productlist/create", {title: newListTitle, ownerId: currentUser.id}).success(function(data) {
         var list = data.list;
         list.products = [];

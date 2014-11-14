@@ -12,6 +12,7 @@ module.exports = {
     comment.creator_id = creatorId;
     comment.product_id = productId;
     comments.push(comment);
+    return comment;
   },
   getCommentsGivenProductId: function(productId) {
     var commentsForProduct = [];
