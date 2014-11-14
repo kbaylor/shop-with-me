@@ -2,7 +2,8 @@
 var productLists = require('../data/product_lists.json');
 var sharedProductLists = require('../data/product_list_share.json');
 var productService = require('../services/productService.js');
-var productListIncrementId = 3;
+var userService = require('../services/userService.js');
+var productListIncrementId = 1000;
 
 module.exports = {
   deleteProductList: function(productListId) {
@@ -68,6 +69,25 @@ module.exports = {
     });
     return unSharedProductListsRet;
   },
+  getFriendsToShareList: function(productListId, ownerId) {
+    var friendsToShare = [];
+    var friends = userService.getFriendsGivenUserId(ownerId); 
+    var friendIdsShared = getSharedFriendsForProductList(productListId);
+    friends.forEach(function(friend, index) {
+      var friendIdToCheck = friend.id;
+      var friendShared = false;
+      friendIdsShared.forEach(function(friendIdShared, index) { 
+        //We found a productlist that has been shared
+        if (friendIdToCheck == friendIdShared){
+           friendShared = true;
+        }
+      });
+      if (friendShared == false){
+        friendsToShare.push(friend);
+      }
+    });
+    return friendsToShare;
+  },
   getProductListGivenProductListId : function(productListId){
     return getProductListFromId(productListId);
   },
@@ -101,6 +121,16 @@ var getProductIndexFromProductList = function(products, productId) {
     }
   });
   return productIndexRet;
+};
+
+var getSharedFriendsForProductList = function (productListId) {
+  var sharedFriendIds = [];
+  sharedProductLists.forEach(function(sharedProductList, index) {  
+    if (productListId == sharedProductList.product_list_id){
+      sharedFriendIds.push(sharedProductList.user_id);
+    }
+  });
+  return sharedFriendIds;
 };
 
 var getProductListFromId = function(productListId){

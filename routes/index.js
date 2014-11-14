@@ -49,6 +49,15 @@ router.get('/productlist/share/user/:userId', function(req, res) {
   res.json(productListService.getSharedProductLists(userId));
 });
 
+router.get('/productlist/:productListId/findunshared/user/:userid', function(req, res) {
+  var productListId = req.params.productListId;
+  var userId = req.params.userId;
+  
+  var friendsToShare = productListService.getFriendsToShareList(productListId, userId);
+  console.log(friendsToShare);
+  res.json(friendsToShare);
+});
+
 router.get('/productlist/share/notshared/user/:userId', function(req, res) {
   var userId = req.params.userId;  
   res.json(productListService.getUnSharedProductLists(userId));
@@ -78,7 +87,7 @@ router.post('/productlist/addproduct', function(req, res) {
 router.post('/productlist/create', function(req, res) {
   var productListTitle = req.body.title;
   var productListOwner = parseInt(req.body.ownerId); 
-  var productList = productListService.createList(productListTitle);
+  var productList = productListService.createList(productListTitle, productListOwner);
   res.status(200).json({"list": productList}).send();
 });
 
@@ -146,7 +155,6 @@ router.get('/users/:userId/friends', function(req, res) {
   
   res.json(userService.getFriendsGivenUserId(userId));
 });
-
 
 /* Notification Endpoints */
 router.get('/notifications/user/:userId', function(req, res) {

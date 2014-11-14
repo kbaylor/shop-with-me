@@ -2,7 +2,7 @@
 var products = require('../data/products.json');
 var amazonProducts = require('../data/amazon_product.json');
 var commentService = require('../services/commentService.js');
-var productIncrementId = 9;
+var productIncrementId = 1000;
 
 module.exports = {
   deleteProductsByProductList: function(productListId) {
