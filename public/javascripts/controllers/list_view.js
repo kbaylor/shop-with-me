@@ -1,16 +1,16 @@
-app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', 'navigationService',
-   function($scope, $http, $routeParams, $location, navigationService) {
+app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', '$timeout', 'navigationService',
+   function($scope, $http, $routeParams, $location, $timeout, navigationService) {
       navigationService.setButtons([
       {
         text: 'Add',
         handler: function() {
-          console.log('Handle add');
+          $scope.addMore();
         }
       },
       {
         text: 'Share',
         handler: function() {
-          console.log('Handle share');
+          $scope.share();
         }
       }
       ]);
@@ -42,11 +42,15 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       };
 
       $scope.addMore = function() {
+        $timeout(function () {
          $location.path('/browse').search({selectedListId: productListId});
+       });
       };
 
       $scope.share = function() {
+        $timeout(function () {
          $location.path('/lists/' + productListId + '/share');
+       });
       };
    }
 ]);
