@@ -2,6 +2,7 @@
 var products = require('../data/products.json');
 var amazonProducts = require('../data/amazon_product.json');
 var commentService = require('../services/commentService.js');
+var productIncrementId = 9;
 
 module.exports = {
   deleteProductsByProductList: function(productListId) {
@@ -47,6 +48,16 @@ module.exports = {
   },
   getAllProducts: function() {
     return products;
+  },
+  createProduct: function(productListId, productAsin) {
+    var product = {};
+    product.amazon_asin = productAsin;
+    product.product_list_id = productListId;
+    product.up_votes = 0;
+    product.down_votes = 0;
+    product.id = productIncrementId;
+    productIncrementId++;
+    products.push(product);
   }
 };
 

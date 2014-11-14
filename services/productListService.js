@@ -2,6 +2,7 @@
 var productLists = require('../data/product_lists.json');
 var sharedProductLists = require('../data/product_list_share.json');
 var productService = require('../services/productService.js');
+var productListIncrementId = 3;
 
 module.exports = {
   deleteProductList: function(productListId) {
@@ -21,6 +22,19 @@ module.exports = {
       productLists.splice(productListIndex, 1);
     }
   },
+  addItemToProductList: function(productListId, productAsin){
+    productService.createProduct(productListId, productAsin); 
+  },
+  createList: function(title, ownerId) {
+    var productList = {};
+    productList.title = title;
+    productList.id = productListIncrementId;
+    productListIncrementId ++;
+    productList.owner_id = ownerId;
+    productList.date_created = new Date();
+    productLists.push(productList);
+    return productList;
+  }, 
   getOwnedProductLists: function(userId) {
     var userProductLists = [];
     productLists.forEach(function(productList, index) {
@@ -76,7 +90,7 @@ module.exports = {
   getProductList: function(productListId) {
     return getProductListFromId(productListId);
   }
-}
+};
 
 var getProductIndexFromProductList = function(products, productId) {
   var productIndexRet = -1;
@@ -87,7 +101,7 @@ var getProductIndexFromProductList = function(products, productId) {
     }
   });
   return productIndexRet;
-}
+};
 
 var getProductListFromId = function(productListId){
   var productListRet;
@@ -98,4 +112,4 @@ var getProductListFromId = function(productListId){
     }
   });
   return productListRet;
-}
+};

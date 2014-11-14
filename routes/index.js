@@ -26,7 +26,6 @@ router.get('/individual-item-view', function(req, res) {
   res.render('individual-item-view', getQueryParams(req));
 });
 
-
 /* JSON Endpoints */
 
 /* Product Endpoints */
@@ -67,6 +66,20 @@ router.post('/productlist/removeproductlist', function(req, res) {
 
   productListService.deleteProductList(productListId);
   res.status(200).send();
+});
+
+router.post('/productlist/addproduct', function(req, res) {
+  var productListId = parseInt(req.body.productListId);
+  var productAsin = req.body.productAsin;
+  productListService.addItemToProductList(productListId, productAsin);
+  res.status(200).send();
+});
+
+router.post('/productlist/create', function(req, res) {
+  var productListTitle = req.body.title;
+  var productListOwner = parseInt(req.body.ownerId); 
+  var productList = productListService.createList(productListTitle);
+  res.status(200).json({"list": productList}).send();
 });
 
 router.get('/productlist/:productListId', function(req, res) {
@@ -120,6 +133,8 @@ router.post('/comments/createcomment', function(req, res) {
   var creatorObj = userService.getUserFromUserId(creatorId);  
   
   notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
+
+  //TODO: Include RECOMMENT case
 
   commentService.createComment(productId, creatorId, content);
   res.status(200).send();
