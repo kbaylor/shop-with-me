@@ -8,7 +8,7 @@ app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService
       $scope.products = data;
     });
     
-    $http.get("/productlist/user/1").success(function(data) {
+    $http.get("/productlist/user/" + currentUser.id).success(function(data) {
       $scope.lists = data;
       
       for (i=0; i < $scope.lists.length; i++) {
@@ -60,7 +60,7 @@ app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService
     }
     
     $scope.saveNewList = function(newListTitle) {
-      $http.post("productlist/create", {title: newListTitle, ownerId: 1}).success(function(data) {
+      $http.post("productlist/create", {title: newListTitle, ownerId: currentUser.id}).success(function(data) {
         var list = data.list;
         list.products = [];
         $scope.lists[$scope.lists.length] = list;
