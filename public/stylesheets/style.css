@@ -7,15 +7,6 @@ a {
   color: #00B7FF;
 }
 
-
-.example-animate-container {
-  background:white;
-  border:1px solid black;
-  list-style:none;
-  margin:0;
-  padding:0 10px;
-}
-
 .animate-repeat {
   line-height:40px;
   list-style:none;
