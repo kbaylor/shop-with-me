@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var url = require('url');
 
+var productService = require('../services/productService.js');
+
 // Let's get all of our query parameters
 var url = require('url');
 
@@ -17,6 +19,10 @@ router.get('/item-view', function(req, res) {
 
 router.get('/individual-item-view', function(req, res) {
     res.render('individual-item-view', getQueryParams(req));
+});
+
+router.get('/products/all', function(req, res) {
+    res.json(productService.getAllAmazonProducts());
 });
 
 var getQueryParams = function(request) {
