@@ -1,4 +1,4 @@
-<div style="height:100%; position:relative; padding-top: 70px" swm-navigation-title="Browse" swm-navigation-clear-history>
+<div style="height:100%; position:relative; padding-top: 70px" swm-navigation-title="Shop With Me" swm-navigation-clear-history>
   <div class="navbar navbar-fixed-top" style="position: absolute;">
     <input class="form-control" type="search" ng-model="q" placeholder="Search" />
     <div class="dropdown">
@@ -10,24 +10,30 @@
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width:100%">
         <li role="presentation" ng-repeat="list in lists" ng-click="onChangeListItem(list)"><a role="menuitem" id="listItem[{{$index}}]">{{list.title}}</a></li>
         <li role="presentation" class="divider"></li>
-        <li role="presentation"><a role="menuitem" id="createNewList">Create new list...</a></li>
+        <li role="presentation" ng-click="toggleModal()"><a role="menuitem" id="createNewList">Create new list...</a></li>
       </ul>
     </div>
   </div>
   
   <div style="height: 100%;overflow-y: scroll">
     <ul class="list-group">
-      <li class="list-group-item animate-repeat" ng-repeat="product in products | filter:q as results">
+      <li class="list-group-item animate-repeat" ng-repeat="product in products | filter:q as results" ng-hide="isProductOnSelectedList(selectedList, product.asin)">
         <!-- TEMPLATE FOR PRODUCT -->
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <div class="col-xs-3">
               <img ng-src="{{product.image_url}}" class="img-responsive">
             </div>
             
-            <div class="col-xs-9">
+            <div class="col-xs-7">
               <h5>{{product.title}}</h5>
-              {{product.rating}} <i ng-repeat="i in getFullStarCount(product.rating) track by $index" class="fa fa-star"></i><i ng-repeat="i in getHalfStarCount(product.rating) track by $index" class="fa fa-star-half-o"></i><i ng-repeat="i in getEmptyStarCount(product.rating) track by $index" class="fa fa-star-o"></i> 
+              <i ng-repeat="i in getFullStarCount(product.rating) track by $index" class="fa fa-star"></i><i ng-repeat="i in getHalfStarCount(product.rating) track by $index" class="fa fa-star-half-o"></i><i ng-repeat="i in getEmptyStarCount(product.rating) track by $index" class="fa fa-star-o"></i> <small>({{product.rating}})</small>
+              <br>
+              <small>${{product.cost}}</small>
+            </div>
+            
+            <div class="col-xs-2">
+                <i ng-show="!isProductOnSelectedList(selectedList, product.asin) && selectedList" class="fa fa-3x fa-plus-square"></i>
             </div>
           </div>
         </div>
@@ -44,4 +50,11 @@
       </li>
     </ul>
   </div>
+  
+  <modal-dialog show='modalShown' width='60%' height='50%'>
+    <h2>Create new list...<h2>
+    <br>
+    <input type="text" class="form-control" placeholder="Title" ng-model="newListTitle">
+    <button type="button" class="btn btn-default form-control" role="button" ng-click="saveNewList(newListTitle)">Save</button>
+  </modal-dialog>
 </div>
