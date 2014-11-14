@@ -1,0 +1,26 @@
+<h1>Browse View</h1>
+
+<html>
+  <body ng-app="ngAnimate">
+    <div>
+      I have {{products.length}} products. They are:
+      <input type="search" ng-model="q" placeholder="filter products..." />
+      <ul class="example-animate-container">
+        <li class="animate-repeat" ng-repeat="product in products | filter:q as results">
+          <!-- TEMPLATE FOR PRODUCT -->
+          [{{$index + 1}}] {{product.asin}} - {{product.title}}
+          
+          <!-- additional searchable fields -->
+          <div style="display:none">
+            {{product.description}}
+          </div>
+        </li>
+        <li class="animate-repeat" ng-if="results.length == 0">
+          <strong>No results found...</strong>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+
+<a href="#/view2">Go to view 2</a>
