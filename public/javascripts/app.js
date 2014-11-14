@@ -9,9 +9,17 @@ var app = angular.module('app', [
         templateUrl: 'views/browse.html',
         controller: 'BrowseCtrl'
       }).
-      when('/view2', {
-        templateUrl: 'views/view2.html',
-        controller: 'View2Ctrl'
+      when('/lists', {
+        templateUrl: 'views/lists.html',
+        controller: 'ListsCtrl'
+      }).
+      when('/incoming', {
+        templateUrl: 'views/lists.html',
+        controller: 'ListsCtrl'
+      }).
+      when('/notifications', {
+        templateUrl: 'views/lists.html',
+        controller: 'ListsCtrl'
       }).
       otherwise({
         redirectTo: '/browse'
