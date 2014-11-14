@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+	
+	<script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="javascripts/app.js"></script>
+
+	<!-- remove once js is concatenated -->
+	<script src="javascripts/controllers/view1.js"></script>
+	<script src="javascripts/controllers/view2.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+	<div ng-view></div>
   </body>
 </html>
