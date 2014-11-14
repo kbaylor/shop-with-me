@@ -87,7 +87,7 @@ router.post('/productlist/addproduct', function(req, res) {
 router.post('/productlist/create', function(req, res) {
   var productListTitle = req.body.title;
   var productListOwner = parseInt(req.body.ownerId); 
-  var productList = productListService.createList(productListTitle);
+  var productList = productListService.createList(productListTitle, productListOwner);
   res.status(200).json({"list": productList}).send();
 });
 
