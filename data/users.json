@@ -21,6 +21,24 @@
          },
          {  
             "friend_id":7
+         },
+         {  
+            "friend_id":8
+         },
+         {  
+            "friend_id":9
+         },
+         {  
+            "friend_id":10
+         },
+         {  
+            "friend_id":11
+         },
+         {  
+            "friend_id":12
+         },
+         {
+            "friend_id":13
          }
       ]
    },
@@ -70,6 +88,70 @@
       "id":7,
       "name":"Robot Steve",
       "image_url": "/images/user1.jpg",
-      "friends":[]
+      "friends":[  
+         {  
+
+         }
+      ]
+   },
+   {  
+      "id":8,
+      "name":"Roger3",
+      "image_url": "/images/user1.jpg",
+      "friends":[  
+         {  
+            "friend_id":2
+         }
+      ]
+   },
+   {  
+      "id":9,
+      "name":"Fred3",
+      "image_url": "/images/user2.jpg",
+      "friends":[  
+         {  
+            "friend_id":1
+         }
+      ]
+   },
+   {  
+      "id":10,
+      "name":"Susan3",
+      "image_url": "/images/user3.jpg",
+      "friends":[  
+         {  
+
+         }
+      ]
+   },
+   {  
+      "id":11,
+      "name":"Roger3",
+      "image_url": "/images/user1.jpg",
+      "friends":[  
+         {  
+            "friend_id":2
+         }
+      ]
+   },
+   {  
+      "id":12,
+      "name":"Fred4",
+      "image_url": "/images/user2.jpg",
+      "friends":[  
+         {  
+            "friend_id":1
+         }
+      ]
+   },
+   {  
+      "id":13,
+      "name":"Robo Susan",
+      "image_url": "/images/user3.jpg",
+      "friends":[  
+         {  
+
+         }
+      ]
    }
 ]
