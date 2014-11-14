@@ -58,8 +58,15 @@ router.get('/productlist/share/notshared/user/:userId', function(req, res) {
 
 router.post('/productlist/removeproduct', function(req, res) {
   var productId = parseInt(req.body.productId);
-  
+
   productListService.deleteProductFromProductList(productId);
+  res.status(200).send();
+});
+
+router.post('/productlist/removeproductlist', function(req, res) {
+  var productListId = parseInt(req.body.productListId);
+
+  productListService.deleteProductList(productListId);
   res.status(200).send();
 });
 

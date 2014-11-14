@@ -1,5 +1,6 @@
 var comments = require('../data/comments.json');
 var commentIdIncrement = 3;
+var userService = require('../services/userService.js');
 
 module.exports = {
   createComment: function(productId, creatorId, content) {
@@ -16,6 +17,7 @@ module.exports = {
     comments.forEach(function(comment, index) {
       console.log(comment);
       if (comment.product_id == productId){
+        comment.creator = userService.getUserFromUserId(comment.creator_id);
         commentsForProduct.push(comment);
       }
     });
