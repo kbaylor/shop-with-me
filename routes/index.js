@@ -156,6 +156,7 @@ router.post('/comments/createcomment', function(req, res) {
   productDetails.product_list_title = productList.title;
   var productListOwner = userService.getUserFromUserId(productList.owner_id);
   productDetails.product_list_owner = productListOwner.name;
+  productDetails.product_list_id = productList.id;
   var creatorObj = userService.getUserFromUserId(creatorId);  
   if (productListOwner.id != creatorId) {  
     notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
@@ -185,19 +186,15 @@ router.get('/users', function(req, res) {
 
 router.get('/users/:userId/friends', function(req, res) {
   var userId = req.params.userId;
+  
   res.json(userService.getFriendsGivenUserId(userId));
 });
 
 /* Notification Endpoints */
 router.get('/notifications/user/:userId', function(req, res) {
-  var userId = req.params.userId; 
-  res.json(notificationService.getNotificationsGivenUserId(userId));
-});
-
-router.post('/notifications/user/:userId/acknowledge', function(req, res) {
   var userId = req.params.userId;
-  notificationService.acknowledgeNotifications(userId);
-  res.status(200).send();
+  
+  res.json(notificationService.getNotificationsGivenUserId(userId));
 });
 
 /* END JSON Endpoints */
