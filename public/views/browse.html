@@ -1,10 +1,9 @@
 <div style="height:100%; position:relative; padding-top: 70px" swm-navigation-title="Shop With Me" swm-navigation-clear-history>
   <div class="navbar navbar-fixed-top" style="position: absolute;">
-    <input class="form-control" type="search" ng-model="q" placeholder="Search" />
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="width:100%">
         <span ng-show="!selectedList">Select a list...</span>
-        <span ng-show="selectedList">{{selectedList.title}}</span>
+        <span ng-show="selectedList">Adding to list: {{selectedList.title}}</span>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width:100%">
@@ -13,11 +12,12 @@
         <li role="presentation" ng-click="toggleModal()"><a role="menuitem" id="createNewList">Create new list...</a></li>
       </ul>
     </div>
+    <input class="form-control" type="search" ng-model="q" placeholder="Search" />
   </div>
   
   <div style="height: 100%;overflow-y: scroll">
     <ul class="list-group">
-      <li class="list-group-item animate-repeat" ng-repeat="product in products | filter:q as results" ng-hide="isProductOnSelectedList(selectedList, product.asin)">
+      <li class="list-group-item animate-repeat" ng-repeat="product in products | filter:q | filterNotOnList:selectedList as results">
         <!-- TEMPLATE FOR PRODUCT -->
         <div class="container">
           <div class="row">

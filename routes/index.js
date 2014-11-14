@@ -80,7 +80,7 @@ router.post('/vote/performvote', function(req, res) {
   var productId = parseInt(req.body.productId);
   var voterId = parseInt(req.body.voterId);
   var voteAmount = parseInt(req.body.vote);
-
+  console.log(productId + " " + voterId + " " + voteAmount);
   voteService.performVote(productId, voterId, voteAmount);
   res.status(200).send();
 });
@@ -150,6 +150,32 @@ var getQueryParams = function(request) {
 
 router.get('/test', function(req, res) {
   console.log(req);
+});
+
+router.get('/collection/vote', function(req, res) {
+	var products = [
+		{
+			productId: 1,
+			image: "/images/testImage6.jpeg",
+			description: "Best thing money can buy",
+			price: 4.80
+		},
+		{
+			productId: 2,
+			image: "/images/testImage7.jpeg",
+			description: "These pants will make you dance",
+			price: 480.58
+		},
+		{
+			productId: 3,
+			image: "/images/testImage12.jpeg",
+			description: "Socks are for jocks",
+			price: 64.00
+		}
+	];
+	var query = getQueryParams(req);
+	console.log(query);
+	res.render("vote", { products: products, currentUser: query.currentUser, showIntro: query.showIntro });
 });
 
 router.get('/notifications', function(req, res) {
