@@ -1,17 +1,35 @@
-<div>
-  <input class="form-control" type="search" ng-model="q" placeholder="Search" />
-  <ul class="list-group">
-    <li class="list-group-item animate-repeat" ng-repeat="product in products | filter:q as results">
-      <!-- TEMPLATE FOR PRODUCT -->
-      [{{$index + 1}}] {{product.asin}} - {{product.title}}
-      
-      <!-- additional searchable fields -->
-      <div style="display:none">
-        {{product.description}}
-      </div>
-    </li>
-    <li class="animate-repeat" ng-if="results.length == 0">
-      <strong>No results found...</strong>
-    </li>
-  </ul>
+<div style="height:100%; position:relative; padding-top: 70px">
+  <div class="navbar navbar-fixed-top" style="position: absolute;">
+    <input class="form-control" type="search" ng-model="q" placeholder="Search" />
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        Lists
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1">List 1</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1">List 2</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1">List 3</a></li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1">Create new list...</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div style="height: 100%;overflow-y: scroll">
+    <ul class="list-group">
+      <li class="list-group-item animate-repeat" ng-repeat="product in products | filter:q as results">
+        <!-- TEMPLATE FOR PRODUCT -->
+        [{{$index + 1}}] {{product.asin}} - {{product.title}}
+        
+        <!-- additional searchable fields -->
+        <div style="display:none">
+          {{product.description}}
+        </div>
+      </li>
+      <li class="animate-repeat" ng-if="results.length == 0">
+        <strong>No results found...</strong>
+      </li>
+    </ul>
+  </div>
 </div>

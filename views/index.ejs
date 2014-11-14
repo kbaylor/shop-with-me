@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
     <title><%= title %></title>
 	
     <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-hover.min.css" />
@@ -9,6 +11,8 @@
 	
     <link rel='stylesheet' href='/stylesheets/style.css' />
     
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   	<script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src='bower_components/angular-animate/angular-animate.min.js' ></script>
@@ -49,12 +53,8 @@
       </div>
 	  </div>
 
-	  <div class="app-body" style="top:50px;bottom:50px;>
-      <div class="scrollable">
-        <div class="scrollable-content">
-          <ng-view></ng-view>
-        </div>
-      </div>
+	  <div class="app-body" style="top:57px;bottom:57px;height:100%">
+      <ng-view></ng-view>
 	  </div>
 	</div>
   </body>
