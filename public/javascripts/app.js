@@ -26,8 +26,8 @@ app.config(['$routeProvider',
         controller: 'ShareCtrl'
       }).
       when('/notifications', {
-        templateUrl: 'views/lists.html',
-        controller: 'ListsCtrl'
+        templateUrl: 'views/notifications.html',
+        controller: 'NotificationsCtrl'
       }).
       when('/lists/:listId', {
         templateUrl: 'views/list_view.html',

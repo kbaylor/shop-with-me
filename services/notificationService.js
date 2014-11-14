@@ -11,15 +11,16 @@ module.exports = {
     });
     return userNotifications;
   },
-  createNotification: function(userId, type, content, relatedId) {
+  createNotification: function(userId, type, actorObject, relatedObject) {
     var notification = {};
     notification.user_id = userId;
-    notification.related_id = relatedId;
     notification.type = type;
     notification.id = notificationIncrementId;
     notificationIncrementId ++;
-    notification.content = content;
-
+    notification.actor = actorObject;
+    notification.related_object = relatedObject;
+    notification.created_date = new Date();
+    
     notifications.push(notification);
   }
 }

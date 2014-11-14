@@ -1,0 +1,96 @@
+<div style="overflow-y:scroll;height:100%;" class="container" swm-navigation-title="Notifications" swm-navigation-clear-history>
+  <ul class="list-unstyled" ng-repeat="notification in notifications">
+    <li class="notification row">
+      <div class="image col-xs-4">
+        <img class="img-circle img-responsive" src="{{notification.actor.image_url}}" />
+      </div>
+      <div class="content col-xs-8">
+        <div class="message">
+          <span ng-switch="notification.type">
+            <span ng-switch-when="SHARE">
+              <b>{{notification.actor.user_name}}</b> asked you to rate their <b>{{notification.related_object.title}}</b> list
+            </span>
+            <span ng-switch-when="COMMENT">
+              <b>{{notification.actor.user_name}}</b> commented on the <b>{{notification.related_object.title}}</b> on your
+              {{notification.related_object.product_list_owner}} list
+            </span>
+            <span ng-switch-when="RECOMMENT">
+              <b>{{notification.actor.user_name}}</b> also commented on the <b>{{notification.related_object.title}}</b> on
+              <b>{{notification.related_object.product_list_owner}}&#39;s</b> <b>{{notification.related_object.product_list_title}}</b> list
+            </span>
+          </span>
+        </div>
+        <div class="timestamp">
+          {{getMoment(notification.creation_date)}}
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+ 	<div class="container">
+		<ul class="list-unstyled">
+	    	
+	    		<li class="notification row">
+					<div class="image col-xs-4">
+						<img class="img-circle img-responsive" src="/images/testImage4.jpeg" />
+					</div>
+					<div class="content col-xs-8">
+						<div class="message">
+							<b>Ally</b> asked you to rate her <b>Halloween Weekend</b> collection
+						</div>
+						<div class="timestamp">
+							1 Hour Ago
+						</div>
+					</div>
+	    		</li>
+	    		<li class="divider"></li>
+	    	
+	    		<li class="notification row">
+					<div class="image col-xs-4">
+						<img class="img-circle img-responsive" src="/images/testImage5.jpeg" />
+					</div>
+					<div class="content col-xs-8">
+						<div class="message">
+							<b>Marky Mark</b> commented on your <b>Pink Panther</b> collection
+						</div>
+						<div class="timestamp">
+							4 Hours Ago
+						</div>
+					</div>
+	    		</li>
+	    		<li class="divider"></li>
+	    	
+	    		<li class="notification row">
+					<div class="image col-xs-4">
+						<img class="img-circle img-responsive" src="/images/testImage10.jpeg" />
+					</div>
+					<div class="content col-xs-8">
+						<div class="message">
+							<b>Nick</b> commented on your <b>Pink Panther</b> collection
+						</div>
+						<div class="timestamp">
+							1 Day Ago
+						</div>
+					</div>
+	    		</li>
+	    		<li class="divider"></li>
+	    	
+	    		<li class="notification row">
+					<div class="image col-xs-4">
+						<img class="img-circle img-responsive" src="/images/testImage9.jpeg" />
+					</div>
+					<div class="content col-xs-8">
+						<div class="message">
+							<b>John</b> also commented on the Ten Gallon Cowboy Hat in Derek&#39;s <b>Blue Steel</b> collection
+						</div>
+						<div class="timestamp">
+							1 Day Ago
+						</div>
+					</div>
+	    		</li>
+	    		<li class="divider"></li>
+	    	
+	    </ul>
+	</div>

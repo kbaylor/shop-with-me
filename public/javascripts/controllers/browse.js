@@ -8,6 +8,14 @@ app.controller('BrowseCtrl', ['$scope', '$http',
     
     $http.get("/productlist/user/1").success(function(data) {
       $scope.lists = data;
+      
+      for (i=0; i < $scope.lists.length; i++) {
+        (function(index) {
+          $http.get("/productlist/" + $scope.lists[index].id + "/products").success(function(data) {
+            $scope.lists[index].products = data;
+          });
+        })(i);
+      }
     });
     
     $scope.onChangeListItem = function(list) {
@@ -25,6 +33,28 @@ app.controller('BrowseCtrl', ['$scope', '$http',
     $scope.getEmptyStarCount = function(rating) {
       var totalCount = $scope.getFullStarCount(rating).length + $scope.getHalfStarCount(rating).length;
       return new Array(5-totalCount);
+    }
+    
+    $scope.isProductOnSelectedList = function(selectedList, asin) {
+      if (selectedList) {
+        for (i=0; i<selectedList.products.length; i++) {
+          if (selectedList.products[i].asin === asin) {
+            return 1;
+          }
+        }
+      }
+      
+      return 0;
+    }
+    
+    $scope.modalShown = false;
+    
+    $scope.toggleModal = function() {
+      $scope.modalShown = !$scope.modalShown;
+    }
+    
+    $scope.saveNewList = function(newListTitle) {
+      $scope.modalShown = false;
     }
   }
 ]);

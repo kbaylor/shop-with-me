@@ -9,9 +9,9 @@
     </div>
   </div>
 
-  <div class="btn-group pull-right">
-    <div class="btn btn-navbar">
-      <a class="swf-navbar swf-navbar-right-btn" ng-click="ns.clickRight()">{{ns.getRightText()}}</span>
-    </div>
+  <div class="btn-group pull-right" ng-if="ns.getButtons()">
+    <span ng-repeat="button in ns.getButtons()">
+      <button type="button" class="btn btn-primary btn-xs" ng-click="button.handler()">{{button.text}}</button>
+    </span>
   </div>
 </div>
