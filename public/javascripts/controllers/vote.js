@@ -41,7 +41,7 @@ var initSwiper = function($scope, user) {
               url: "/comments/createcomment",
               type: "POST",
               data: {
-                productId: product.productId,
+                productId: product.id,
                 creatorId: currentUser,
                 content: product.comment
               },
