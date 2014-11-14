@@ -55,7 +55,7 @@ app.controller('ShareCtrl', ['$scope', '$http', '$routeParams',  '$location', '$
                 $http.post('/productlist/sharelist', x);
                 $timeout(function () {
                     $location.path('/lists/' + $scope.id);
-                }
+                });
             }
         }
     }
