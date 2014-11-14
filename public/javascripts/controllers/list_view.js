@@ -12,6 +12,7 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
 
       $scope.products = [];
       $scope.nonvotedProducts = [];
+      $scope.addMoreText = "add more products";//default
       
       // Service call to get the list & list items
       $http.get('/productlist/' + productListId).success(function(productList) {
