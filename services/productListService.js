@@ -3,6 +3,23 @@ var sharedProductLists = require('../data/product_list_share.json');
 var productService = require('../services/productService.js');
 
 module.exports = {
+  deleteProductList: function(productListId) {
+    // Delete all of the products from the product list
+    productService.deleteProductsByProductList(productListId);
+
+    // Delete the product list
+    var productListIndex = -1;
+
+    productLists.forEach(function(productList, index) {
+      if (productList.id === productListId) {
+        productListIndex = index;
+      }
+    });
+
+    if (productListIndex != -1){
+      productLists.splice(productListIndex, 1);
+    }
+  },
   getOwnedProductLists: function(userId) {
     var userProductLists = [];
     productLists.forEach(function(productList, index) {
