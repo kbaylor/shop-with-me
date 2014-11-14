@@ -30,6 +30,9 @@ module.exports = {
     if (productIndex != -1){
       products.splice(productIndex, 1);
     }
+  },
+  getProductList: function(productListId) {
+    return getProductListFromId(productListId);
   }
 }
 

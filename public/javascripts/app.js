@@ -1,8 +1,12 @@
 var app = angular.module('app', [
   'ngRoute',
   'ngAnimate',
+  'ngTouch',
   'mobile-angular-ui'
-]).config(['$routeProvider',
+]);
+
+app.config(['$routeProvider',
+
   function($routeProvider) {
     $routeProvider.
       when('/browse', {
@@ -20,6 +24,10 @@ var app = angular.module('app', [
       when('/notifications', {
         templateUrl: 'views/lists.html',
         controller: 'ListsCtrl'
+      }).
+      when('/lists/:listId', {
+        templateUrl: 'views/list_view.html',
+        controller: 'ListDetailCtrl'
       }).
       otherwise({
         redirectTo: '/browse'

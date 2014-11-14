@@ -57,6 +57,10 @@ router.post('/productlist/removeproduct', function(req, res) {
   res.status(200).send();
 });
 
+router.get('/productlist/:productListId', function(req, res) {
+  var productListId = req.params.productListId;
+  res.json(productListService.getProductList(productListId));
+});
 
 /* Vote Endpoints */
 router.post('/vote/performvote', function(req, res) {
