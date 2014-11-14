@@ -1,0 +1,17 @@
+<div>
+  <div class="navbar-brand navbar-brand-center">
+    {{ns.getTitle()}}
+  </div>
+
+  <div class="btn-group pull-left" ng-show="ns.canGoBack()">
+    <div class="btn btn-navbar">
+      <a class="swf-navbar swf-navbar-back-btn" ng-click="ns.goBack()">&lt; Back</span>
+    </div>
+  </div>
+
+  <div class="btn-group pull-right">
+    <div class="btn btn-navbar">
+      <span class="swf-navbar">Right Action</span>
+    </div>
+  </div>
+</div>

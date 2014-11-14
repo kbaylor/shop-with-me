@@ -1,17 +1,16 @@
-<div style="height:100%; position:relative; padding-top: 70px">
+<div style="height:100%; position:relative; padding-top: 70px" swm-navigation-title="Browse" swm-navigation-clear-history>
   <div class="navbar navbar-fixed-top" style="position: absolute;">
     <input class="form-control" type="search" ng-model="q" placeholder="Search" />
     <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-        Lists
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="width:100%">
+        <span ng-show="!selectedList">Select a list...</span>
+        <span ng-show="selectedList">{{selectedList.title}}</span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1">List 1</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1">List 2</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1">List 3</a></li>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width:100%">
+        <li role="presentation" ng-repeat="list in lists" ng-click="onChangeListItem(list)"><a role="menuitem" id="listItem[{{$index}}]">{{list.title}}</a></li>
         <li role="presentation" class="divider"></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1">Create new list...</a></li>
+        <li role="presentation"><a role="menuitem" id="createNewList">Create new list...</a></li>
       </ul>
     </div>
   </div>
@@ -20,11 +19,24 @@
     <ul class="list-group">
       <li class="list-group-item animate-repeat" ng-repeat="product in products | filter:q as results">
         <!-- TEMPLATE FOR PRODUCT -->
-        [{{$index + 1}}] {{product.asin}} - {{product.title}}
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-3">
+              <img ng-src="{{product.image_url}}" class="img-responsive">
+            </div>
+            
+            <div class="col-xs-9">
+              <h5>{{product.title}}</h5>
+              {{product.rating}} <i ng-repeat="i in getFullStarCount(product.rating) track by $index" class="fa fa-star"></i><i ng-repeat="i in getHalfStarCount(product.rating) track by $index" class="fa fa-star-half-o"></i><i ng-repeat="i in getEmptyStarCount(product.rating) track by $index" class="fa fa-star-o"></i> 
+            </div>
+          </div>
+        </div>
         
         <!-- additional searchable fields -->
         <div style="display:none">
           {{product.description}}
+          {{product.size}}
+          {{product.gender}}
         </div>
       </li>
       <li class="animate-repeat" ng-if="results.length == 0">

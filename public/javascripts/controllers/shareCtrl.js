@@ -11,7 +11,6 @@ app.controller('ShareCtrl', ['$scope', function($scope) {
     }]
 
     $scope.friendClicked = function(friend){
-        console.log(friend.name);
         friend.selected = !friend.selected;
     };
 }]);

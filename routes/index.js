@@ -36,7 +36,7 @@ router.get('/productlist/:productListId/products', function(req, res) {
 });
 
 router.get('/products/all', function(req, res) {
-    res.json(productService.getAllAmazonProducts());
+  res.json(productService.getAllAmazonProducts());
 });
 
 /* Product List Endpoints */
@@ -50,9 +50,20 @@ router.get('/productlist/share/user/:userId', function(req, res) {
   res.json(productListService.getSharedProductLists(userId));
 });
 
+router.post('/productlist/removeproduct', function(req, res) {
+  var productId = parseInt(req.body.productId);
+  
+  productListService.deleteProductFromProductList(productId);
+  res.status(200).send();
+});
+
+router.get('/productlist/:productListId', function(req, res) {
+  var productListId = req.params.productListId;
+  res.json(productListService.getProductList(productListId));
+});
 
 /* Vote Endpoints */
-router.post('/vote/performVote', function(req, res) {
+router.post('/vote/performvote', function(req, res) {
   var productId = parseInt(req.body.productId);
   var voterId = parseInt(req.body.voterId);
   var voteAmount = parseInt(req.body.vote);
@@ -72,7 +83,7 @@ router.get('/comments/product/:productId', function(req, res) {
   res.json(commentService.getCommentsGivenProductId(productId));
 });
 
-router.post('/comments/createComment', function(req, res) {
+router.post('/comments/createcomment', function(req, res) {
   var productId = parseInt(req.body.productId);
   var creatorId = parseInt(req.body.creatorId);
   var content = req.body.content;
