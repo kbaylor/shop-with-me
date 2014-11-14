@@ -2,7 +2,7 @@
   <ul class="list-unstyled" ng-repeat="notification in notifications">
     <li class="notification row" ng-click="goto(notification)">
       <div class="image col-xs-4">
-        <img class="img-circle img-responsive" src="{{notification.actor.image_url}}" />
+        <img class="img-circle img-responsive" ng-src="{{notification.actor.image_url}}" />
       </div>
       <div class="content col-xs-8">
         <div class="message">
