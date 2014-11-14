@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  line-height: 20px;
 }
 
 a {
@@ -104,4 +105,14 @@ ul.view-list {
 
 .down-vote {
   color: red;
+}
+
+.notification {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.notification .timestamp {
+  color: gray;
 }

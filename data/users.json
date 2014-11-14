@@ -6,6 +6,21 @@
       "friends":[  
          {  
             "friend_id":2
+         },
+         {  
+            "friend_id":3
+         },
+         {  
+            "friend_id":4
+         },
+         {  
+            "friend_id":5
+         },
+         {  
+            "friend_id":6
+         },
+         {  
+            "friend_id":7
          }
       ]
    },
@@ -23,6 +38,46 @@
       "id":3,
       "name":"Susan",
       "image_url": "/images/user3.jpg",
+      "friends":[  
+         {  
+
+         }
+      ]
+   },
+   {  
+      "id":4,
+      "name":"Roger2",
+      "image_url": "/images/user1.jpg",
+      "friends":[  
+         {  
+            "friend_id":2
+         }
+      ]
+   },
+   {  
+      "id":5,
+      "name":"Fred2",
+      "image_url": "/images/user2.jpg",
+      "friends":[  
+         {  
+            "friend_id":1
+         }
+      ]
+   },
+   {  
+      "id":6,
+      "name":"Susan2",
+      "image_url": "/images/user3.jpg",
+      "friends":[  
+         {  
+
+         }
+      ]
+   },
+   {  
+      "id":7,
+      "name":"Robot Steve",
+      "image_url": "/images/user1.jpg",
       "friends":[  
          {  
 

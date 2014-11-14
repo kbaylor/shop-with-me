@@ -1,22 +1,24 @@
-<div class="scrollable">
-
-    <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
-        <div class="list-group" style="padding-top:56px;">
-            <a ng-repeat="friend in friends" 
-                class="list-group-item" 
-                ng-click="friendClicked(friend); $event.stopPropagation();" >
-
-                <img ng-src="{{friend.pic}}" class="img-rounded">
-                <label>{{friend.name}}</label>
-                <i class="fa fa-check fa-4x pull-right" ng-show="friend.selected"></i>
-            </a>
+<div class="container-fluid">
+    <div class="scrollable" style="padding-top:56px; padding-bottom:56px">
+        <input ng-show="friends.length > 3" class="form-control" type="search" ng-model="q" placeholder="Search" />
+        <div class="scrollable-content">
+            <div class="list-group">
+                <a ng-repeat="friend in friends|filter:q as results" class="list-group-item" ng-click="friendClicked(friend); $event.stopPropagation();">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <img ng-src="{{friend.image_url}}" class="img-rounded">
+                        </div>
+                        <div class="col-xs-7">
+                            <label>{{friend.name}}</label>
+                        </div>
+                            <i class="fa fa-check fa-4x pull-right"  style="padding-right: .5em" ng-show="friend.selected"></i>
+                    </div>
+                </a>
+                <div ng-show="results.length == 0">
+                        <strong>No results found...</strong>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
-        <i class="fa fa-search"></i> 
-        <span ui-show="searchBar">Show</span>
-        <span ui-hide="searchBar">Hide</span>
-        Search Bar
-    </a>
+    </div>
 </div>
