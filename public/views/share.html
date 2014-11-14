@@ -1,7 +1,10 @@
-<div class="container-fluid" swm-navigation-title="Share" swm-navigation-right-text="meow" >
-    <div class="scrollable" style="padding-top:56px; padding-bottom:66px">
-        <input ng-show="friends.length > 7" class="form-control" type="filter" ng-model="q" placeholder="Search" style="margin-bottom:10px;"/>
+<div class="container-fluid" swm-navigation-title="Share" ng-cloak>
+    <div class="scrollable" style="padding-top:56px; padding-bottom:10em">
+        <input ng-show="friends.length > 7" class="form-control" type="filter" ng-model="q" placeholder="Search" style="margin-bottom:10px;" />
         <div class="scrollable-content">
+            <div ng-show="results.length == 0">
+                <strong>No results found...</strong>
+            </div>
             <div class="list-group">
                 <a ng-repeat="friend in friends | orderBy:'alreadyShared':true | filter:q as results" class="list-group-item" ng-click="friendClicked(friend); $event.stopPropagation();" ng-class="friend.alreadyShared? 'disabled' : ''" ng-style="{opacity: friend.alreadyShared? '.4' : '1'}">
                     <div class="row">
@@ -11,14 +14,13 @@
                         <div class="col-xs-7">
                             <label>{{friend.name}}</label>
                         </div>
-                            <i class="fa fa-check fa-2x pull-right"  style="padding-right: .5em" ng-show="friend.selected"></i>
+                        <i class="fa fa-check fa-2x pull-right" style="padding-right: .5em" ng-show="friend.selected"></i>
                     </div>
                 </a>
-                <div ng-show="results.length == 0">
-                        <strong>No results found...</strong>
-                </div>
             </div>
         </div>
-
+        <div class="span7 text-center share-submit-btn-container">
+            <button type="button" class="btn btn-primary share-submit-btn" ng-style="{opacity: totalSelected < 1? '.4' : '1'}" ng-click="submit()">Share with your {{endSubmitBtnText}}</button>
+        </div>
     </div>
 </div>

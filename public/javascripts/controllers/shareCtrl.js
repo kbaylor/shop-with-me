@@ -3,13 +3,9 @@ app.controller('ShareCtrl', ['$scope', '$http', '$routeParams', 'navigationServi
 
         var user = authenticationService.getCurrentUser();
         $scope.id = $routeParams.listId;
-        navigationService.setButtons([{
-            text: 'Share with friends',
-            handler: function() {
-                //call here
-                $scope.submit();
-            }
-        }]);
+        $scope.endSubmitBtnText = "friend";
+        $scope.totalSelected = 0;
+
         $http.get('/productlist/' + $scope.id + '/findunshared/user/'+user.id).success(function(eligibleFriends) {
             $scope.eligibleFriends = eligibleFriends;
             $http.get("/users/"+user.id+"/friends").success(function(data) {
@@ -33,8 +29,11 @@ app.controller('ShareCtrl', ['$scope', '$http', '$routeParams', 'navigationServi
         });
 
         $scope.friendClicked = function(friend) {
-            if (friend.alreadyShared == null || !friend.alreadyShared)
+            if (friend.alreadyShared == null || !friend.alreadyShared) {
+                $scope.totalSelected += (friend.selected)? -1 : 1;
                 friend.selected = !friend.selected;
+                $scope.endSubmitBtnText = ($scope.totalSelected > 1)? "friends" : "friend";
+            }
         };
 
         $scope.submit = function() {
@@ -57,9 +56,5 @@ app.controller('ShareCtrl', ['$scope', '$http', '$routeParams', 'navigationServi
                 navigationService.goBack();
             }
         }
-
-        $scope.$on("$destroy", function() {
-            navigationService.setButtons([]);
-        });
     }
 ]);

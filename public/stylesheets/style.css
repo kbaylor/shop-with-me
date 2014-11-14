@@ -254,3 +254,13 @@ ul.view-list {
   display: flex;
   align-items: center;
 }
+
+.share-submit-btn {
+    margin-top: 5px;
+}
+
+.share-submit-btn-container {
+    border-top: 1px;
+    border-top-style: solid;
+    border-top-color: black;
+}
