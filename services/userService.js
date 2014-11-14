@@ -11,7 +11,7 @@ module.exports = {
         var userFriends = user.friends;
         console.log(userFriends);
         userFriends.forEach(function(friend, index) {
-          var friend = getUserGivenUserId(friend.friend_id);
+          var friend = getUserObjGivenUserId(friend.friend_id);
           friends.push(friend);
         }); 
         return;
@@ -27,10 +27,10 @@ module.exports = {
     return productList.owner_id; 
   },
   getUserFromUserId: function(userId) {
-    return getUserGivenUserId(userId);
+    return getUserObjGivenUserId(userId);
   }
 }
-var getUserGivenUserId = function(userId) {
+var getUserObjGivenUserId = function(userId) {
   var userReturn;
   users.forEach(function(user, index) {
     if (user.id == userId) {

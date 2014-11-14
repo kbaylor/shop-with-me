@@ -110,16 +110,21 @@ router.post('/comments/createcomment', function(req, res) {
   var productId = parseInt(req.body.productId);
   var creatorId = parseInt(req.body.creatorId);
   var content = req.body.content;
-  
-  var ownerId = userService.getUserIdFromProductId(productId);
-  var notificationContent = "USER blank has commented on a product you have on your list!" 
 
-  notificationService.createNotification(ownerId, "COMMENT", notificationContent, productId);
+  //Create Notification
+  var product = productService.getProductGivenProductId(productId);
+  var productList = productListService.getProductListGivenProductListId(product.product_list_id);
+  var productDetails = productService.getProductDetailsGivenProduct(product);
+  productDetails.product_list_title = productList.title;
+  var productListOwner = userService.getUserFromUserId(productList.owner_id);
+  productDetails.product_list_owner = productListOwner.name;
+  var creatorObj = userService.getUserFromUserId(creatorId);  
+  
+  notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
 
   commentService.createComment(productId, creatorId, content);
   res.status(200).send();
 });
-
 
 /* User Endpoints */
 router.get('/users/:userId/friends', function(req, res) {

@@ -38,6 +38,9 @@ module.exports = {
     });
     return productRet;
   },
+  getProductDetailsGivenProduct: function(product){
+    return getProductDetailsForProduct(product);
+  },
   getAllAmazonProducts: function() {
     return amazonProducts;
   },
