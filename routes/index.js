@@ -7,6 +7,7 @@ var productListService = require('../services/productListService.js');
 var voteService = require('../services/voteService.js');
 var commentService = require('../services/commentService.js');
 var userService = require('../services/userService.js');
+var notificationService = require('../services/notificationService.js');
 
 // Let's get all of our query parameters
 var url = require('url');
@@ -82,10 +83,18 @@ router.post('/comments/createComment', function(req, res) {
 
 
 /* User Endpoints */
-router.get('/user/:userId/friends', function(req, res) {
+router.get('/users/:userId/friends', function(req, res) {
   var userId = req.params.userId;
   
   res.json(userService.getFriendsGivenUserId(userId));
+});
+
+
+/* Notification Endpoints */
+router.get('/notifications/user/:userId', function(req, res) {
+  var userId = req.params.userId;
+  
+  res.json(notificationService.getNotificationsGivenUserId(userId));
 });
 
 /* END JSON Endpoints */
