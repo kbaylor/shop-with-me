@@ -171,3 +171,76 @@ ul.view-list {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+
+
+/** Voting **/
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.productContainer {
+  width: 80%;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #909090;
+  vertical-align: center;
+}
+
+.imageContainer {
+  max-width:400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  height: 35vh;
+}
+
+.carouselContainer {
+  padding: 0px;
+}
+
+.negativeVote {
+  padding: 0px;
+}
+
+.positiveVote {
+  padding: 0px;
+  color: darkred;
+}
+
+.productData {
+  clear: both;
+  padding-top: 10px;
+  text-align: center;
+  margin-bottom: 75px;
+}
+
+.voteImage {
+  height: 100%;
+  padding: 2vw;
+}
+
+.glyphicon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comment {
+  position: absolute;
+  bottom: 0px;
+  margin: 7px;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+
+  display: flex;
+  align-items: center;
+}

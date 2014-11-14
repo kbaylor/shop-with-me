@@ -33,6 +33,10 @@ app.config(['$routeProvider',
         templateUrl: 'views/list_view.html',
         controller: 'ListDetailCtrl'
       }).
+      when('/lists/:listId/vote', {
+        templateUrl: 'views/vote.html',
+        controller: 'VoteCtrl'
+      }).
       otherwise({
         redirectTo: '/browse'
       });
