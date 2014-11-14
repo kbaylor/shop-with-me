@@ -1,5 +1,5 @@
-app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location',
-   function($scope, $http, $routeParams, $location) {
+app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', 'navigationService',
+   function($scope, $http, $routeParams, $location, navigationService) {
 
       var productListId = $routeParams.listId;
 
@@ -7,7 +7,7 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       
       // Service call to get the list & list items
       $http.get('/productlist/' + productListId).success(function(productList) {
-         $scope.listName = productList.title;
+         navigationService.setTitle(productList.title);
       });
 
       $http.get('/productlist/' + productListId + '/products').success(function(products) {
@@ -28,7 +28,11 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
       };
 
       $scope.addMore = function() {
-         $location.path('/browse').search({selectedListId: productListId})
+         $location.path('/browse').search({selectedListId: productListId});
+      };
+
+      $scope.share = function() {
+         $location.path('/lists/' + productListId + '/share');
       };
    }
 ]);

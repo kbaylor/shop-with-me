@@ -93,3 +93,15 @@ ul.view-list {
   white-space: nowrap;
   overflow: hidden;
 }
+
+.vote-summary {
+  font-size: 20px;
+}
+
+.up-vote {
+  color: green;
+}
+
+.down-vote {
+  color: red;
+}
