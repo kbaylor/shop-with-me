@@ -58,8 +58,7 @@ router.get('/productlist/:productListId/findunshared/user/:userId', function(req
 
 router.post('/productlist/sharelist', function(req, res) {
   var productListId = parseInt(req.body.productListId);
-  var friends = JSON.parse(req.body.friends);
-  console.log(friends);
+  var friends = req.body.friends;
   productListService.shareList(productListId, friends);
 
   res.status(200).send();
