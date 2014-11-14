@@ -42,6 +42,10 @@ app.config(['$routeProvider',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       }).
+      when('/lists/:listId/:itemIndex', {
+        templateUrl: 'views/immersive-list-view.html',
+        controller: 'ImmersiveListCtrl'
+      }).
       otherwise({
         redirectTo: '/login'
       });
