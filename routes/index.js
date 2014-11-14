@@ -160,7 +160,7 @@ router.post('/comments/createcomment', function(req, res) {
   if (productListOwner.id != creatorId) {  
     notificationService.createNotification(productListOwner.id, "COMMENT", creatorObj, productDetails);
   }
-  commentService.createComment(productId, creatorId, content);
+  var comment = commentService.createComment(productId, creatorId, content);
 
   //Get All Comments for this product
   var comments = commentService.getCommentsGivenProductId(productId);
@@ -174,7 +174,7 @@ router.post('/comments/createcomment', function(req, res) {
     }
   }); 
  
-  res.status(200).send();
+  res.status(200).json(comment).send();
 });
 
 /* User Endpoints */
