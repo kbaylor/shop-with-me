@@ -22,6 +22,7 @@ var getProductDetailsForProduct = function(productObj) {
   amazonProducts.forEach(function(amazonProduct, index) {
     if (amazonProduct.asin == productAsin) {
       amazonProductReturn = amazonProduct;
+      return;
     }
   });
   return amazonProductReturn;

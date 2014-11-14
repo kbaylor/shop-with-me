@@ -13,22 +13,25 @@ module.exports = {
   },
   getSharedProductLists: function(userId) {
     //Not Tested
-    var sharedProductLists = [];
-    for (var sharedProductList in sharedProductLists){
+    var sharedProductListsRet = [];
+    sharedProductLists.forEach(function(sharedProductList, index) {
       if (sharedProductList.user_id == userId){
         //We found a match, so get the productList with this Id
         var productList = getProductListsFromId(sharedProductList.product_list_id);
-        sharedProductLists.Push(productList);
+        sharedProductListsRet.push(productList);
       }
-    }
-    return sharedProductLists;
+    });
+    return sharedProductListsRet;
   }
 }
 
 var getProductListsFromId = function(productListId){
-  for (var productList in productLists){
+  var productListRet;
+  productLists.forEach(function(productList, index) {
     if (productList.id == productListId){
-      return productList;
+      productListRet = productList;
+      return;
     }
-  }
+  });
+  return productListRet;
 }

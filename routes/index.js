@@ -3,6 +3,7 @@ var router = express.Router();
 var url = require('url');
 
 var productService = require('../services/productService.js');
+var productListService = require('../services/productListService.js');
 
 // Let's get all of our query parameters
 var url = require('url');
@@ -18,12 +19,34 @@ router.get('/item-view', function(req, res) {
 });
 
 router.get('/individual-item-view', function(req, res) {
-    res.render('individual-item-view', getQueryParams(req));
+  res.render('individual-item-view', getQueryParams(req));
+});
+
+
+/* GET JSON Endpoints */
+
+/* Product Endpoints */
+router.get('/productlist/:productListId/products', function(req, res) {
+  var productListId = req.params.productListId;
+  res.json(productService.getProductsForProductListId(productListId));
 });
 
 router.get('/products/all', function(req, res) {
     res.json(productService.getAllAmazonProducts());
 });
+
+/* Product List Endpoints */
+router.get('/productlist/user/:userId', function(req, res) {
+  var userId = req.params.userId;
+  res.json(productListService.getOwnedProductLists(userId));
+});
+
+router.get('/productlist/share/user/:userId', function(req, res) {
+  var userId = req.params.userId;
+  res.json(productListService.getSharedProductLists(userId));
+});
+
+/* END GET JSON Endpoints */
 
 var getQueryParams = function(request) {
     var url_parts = url.parse(request.url, true);
