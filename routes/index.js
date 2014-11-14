@@ -51,8 +51,7 @@ router.get('/productlist/share/user/:userId', function(req, res) {
 });
 
 router.get('/productlist/share/notshared/user/:userId', function(req, res) {
-  var userId = req.params.userId;
-  
+  var userId = req.params.userId;  
   res.json(productListService.getUnSharedProductLists(userId));
 });
 

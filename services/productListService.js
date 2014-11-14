@@ -1,3 +1,4 @@
+'use-strict';
 var productLists = require('../data/product_lists.json');
 var sharedProductLists = require('../data/product_list_share.json');
 var productService = require('../services/productService.js');
@@ -11,7 +12,7 @@ module.exports = {
     var productListIndex = -1;
 
     productLists.forEach(function(productList, index) {
-      if (productList.id === productListId) {
+      if (productList.id == productListId) {
         productListIndex = index;
       }
     });

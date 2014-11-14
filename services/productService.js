@@ -1,3 +1,4 @@
+'use-strict';
 var products = require('../data/products.json');
 var amazonProducts = require('../data/amazon_product.json');
 var commentService = require('../services/commentService.js');
@@ -7,7 +8,7 @@ module.exports = {
     var i = 0;
 
     while (i < products.length) {
-      if (products[i].product_list_id === productListId) {
+      if (products[i].product_list_id == productListId) {
         products.splice(i, 1);
       } else {
         i++;
@@ -47,7 +48,7 @@ module.exports = {
   getAllProducts: function() {
     return products;
   }
-}
+};
 
 var getProductDetailsForProduct = function(productObj) {
   var productAsin = productObj.amazon_asin;
@@ -59,4 +60,4 @@ var getProductDetailsForProduct = function(productObj) {
     }
   });
   return amazonProductReturn;
-}
+};

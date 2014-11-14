@@ -38,11 +38,7 @@
       "id":3,
       "name":"Susan",
       "image_url": "/images/user3.jpg",
-      "friends":[  
-         {  
-
-         }
-      ]
+      "friends":[]
    },
    {  
       "id":4,
@@ -68,20 +64,12 @@
       "id":6,
       "name":"Susan2",
       "image_url": "/images/user3.jpg",
-      "friends":[  
-         {  
-
-         }
-      ]
+      "friends":[]
    },
    {  
       "id":7,
       "name":"Robot Steve",
       "image_url": "/images/user1.jpg",
-      "friends":[  
-         {  
-
-         }
-      ]
+      "friends":[]
    }
 ]
