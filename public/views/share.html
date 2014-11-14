@@ -1,0 +1,22 @@
+<div class="scrollable">
+
+    <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+        <div class="list-group" style="padding-top:56px;">
+            <a ng-repeat="friend in friends" 
+                class="list-group-item" 
+                ng-click="friendClicked(friend); $event.stopPropagation();" 
+                ng-class="friend.selected? 'active' : '' ">
+                <img ng-src="{{friend.pic}}" class="img-rounded">
+                <label>{{friend.name}}</label>
+                <i class="fa fa-check pull-right" ng-show="friend.selected"></i>
+            </a>
+        </div>
+    </div>
+
+    <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
+        <i class="fa fa-search"></i> 
+        <span ui-show="searchBar">Show</span>
+        <span ui-hide="searchBar">Hide</span>
+        Search Bar
+    </a>
+</div>

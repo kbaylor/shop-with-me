@@ -2,6 +2,7 @@
    {  
       "id":1,
       "name":"Roger",
+      "image_url": "/images/user1.jpg",
       "friends":[  
          {  
             "friend_id":2
@@ -11,6 +12,7 @@
    {  
       "id":2,
       "name":"Fred",
+      "image_url": "/images/user2.jpg",
       "friends":[  
          {  
             "friend_id":1
@@ -20,6 +22,7 @@
    {  
       "id":3,
       "name":"Susan",
+      "image_url": "/images/user3.jpg",
       "friends":[  
          {  
 

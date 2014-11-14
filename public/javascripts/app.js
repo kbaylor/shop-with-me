@@ -17,6 +17,10 @@ var app = angular.module('app', [
         templateUrl: 'views/lists.html',
         controller: 'ListsCtrl'
       }).
+      when('/share', {
+        templateUrl: 'views/share.html',
+        controller: 'ShareCtrl'
+      }).
       when('/notifications', {
         templateUrl: 'views/lists.html',
         controller: 'ListsCtrl'
