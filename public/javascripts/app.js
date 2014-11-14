@@ -21,7 +21,7 @@ app.config(['$routeProvider',
         templateUrl: 'views/lists.html',
         controller: 'ListsCtrl'
       }).
-      when('/share', {
+      when('/lists/:listId/share', {
         templateUrl: 'views/share.html',
         controller: 'ShareCtrl'
       }).

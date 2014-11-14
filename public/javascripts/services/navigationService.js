@@ -2,6 +2,8 @@ app.service('navigationService', function($rootScope, $location){
   var _history = [];
   var _title = '';
   var _goingBack = false;
+  var _rightText = '';
+  var _rightClick = null;
   
   $rootScope.$on('$locationChangeSuccess', function(event) {
     if (_goingBack) {
@@ -37,4 +39,21 @@ app.service('navigationService', function($rootScope, $location){
   this.getTitle = function() {
     return _title;
   };
+
+  this.setRightText = function(text) {
+    _rightText = text;
+  };
+
+  this.getRightText = function() {
+    return _rightText;
+  };
+
+  this.clickRight = function() {
+    _rightClick();
+  };
+
+  this.setClickRight = function (cb) {
+    _rightClick = cb;
+  };
+
 });
