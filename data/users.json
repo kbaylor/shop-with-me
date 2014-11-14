@@ -66,8 +66,8 @@
    },
    {  
       "id":4,
-      "name":"Roger2",
-      "email":"roger2@amazon.com",
+      "name":"Pico",
+      "email":"pico@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
          {  
@@ -77,8 +77,8 @@
    },
    {  
       "id":5,
-      "name":"Fred2",
-      "email":"fred2@amazon.com",
+      "name":"Jordan",
+      "email":"jordan@amazon.com",
       "image_url": "/images/user2.jpg",
       "friends":[  
          {  
@@ -88,14 +88,14 @@
    },
    {  
       "id":6,
-      "name":"Susan2",
-      "email":"susan2@amazon.com",
+      "name":"Tim",
+      "email":"tim@amazon.com",
       "image_url": "/images/user3.jpg",
       "friends":[]
    },
    {  
       "id":7,
-      "name":"Robot Steve",
+      "name":"Alfred",
       "email":"robot@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
@@ -106,7 +106,7 @@
    },
    {  
       "id":8,
-      "name":"Roger3",
+      "name":"Mike",
       "email":"roger3@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
@@ -117,7 +117,7 @@
    },
    {  
       "id":9,
-      "name":"Fred3",
+      "name":"Cal",
       "email":"fred3@amazon.com",
       "image_url": "/images/user2.jpg",
       "friends":[  
@@ -128,7 +128,7 @@
    },
    {  
       "id":10,
-      "name":"Susan3",
+      "name":"Ray",
       "email":"susan3@amazon.com",
       "image_url": "/images/user3.jpg",
       "friends":[  
@@ -139,7 +139,7 @@
    },
    {  
       "id":11,
-      "name":"Roger4",
+      "name":"Red",
       "email":"roger4@amazon.com",
       "image_url": "/images/user1.jpg",
       "friends":[  
@@ -150,7 +150,7 @@
    },
    {  
       "id":12,
-      "name":"Fred4",
+      "name":"Josh",
       "email":"fred4@amazon.com",
       "image_url": "/images/user2.jpg",
       "friends":[  
@@ -161,7 +161,7 @@
    },
    {  
       "id":13,
-      "name":"Robo Susan",
+      "name":"Lucy",
       "email":"robos@amazon.com",
       "image_url": "/images/user3.jpg",
       "friends":[  
