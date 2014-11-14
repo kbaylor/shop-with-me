@@ -54,6 +54,9 @@ module.exports = {
       if (sharedProductList.user_id == userId){
         //We found a match, so get the productList with this Id
         var productList = getProductListFromId(sharedProductList.product_list_id);
+        var productListOwnerId = productList.owner_id;
+        var owner = userService.getUserFromUserId(productListOwnerId);
+        productList.owner = owner;
         productList.done_voting = sharedProductList.done_voting;
         sharedProductListsRet.push(productList);
       }
