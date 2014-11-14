@@ -157,7 +157,7 @@ ul.view-list {
   width: 50%; /* Default */
 
   /* Center the dialog */
-  top: 50%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);

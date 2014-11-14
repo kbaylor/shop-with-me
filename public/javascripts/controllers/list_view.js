@@ -70,6 +70,10 @@ app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location'
          $location.path('/lists/' + productListId + '/share');
        });
       };
+      
+      $scope.launchImmersiveView = function(index) {
+        $location.path('/lists/' + productListId + '/' + index);
+      }
 
       navigationService.setButtons([
          {

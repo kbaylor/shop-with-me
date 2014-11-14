@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
 
     <title><%= title %></title>
 	
@@ -11,21 +11,22 @@
 	
     <link rel='stylesheet' href='/stylesheets/style.css' />
     
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  	<script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-    <script src='/bower_components/angular-animate/angular-animate.min.js' ></script>
-	  <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>	
-	  <script src="/bower_components/moment/moment.js"></script>	
-    <script src='/bower_components/angular-touch/angular-touch.min.js' ></script>
-    <script src='/bower_components/jquery-touchswipe/jquery.touchSwipe.min.js'></script> 
-    
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  	<script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src='bower_components/angular-animate/angular-animate.min.js' ></script>
+	  <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>	
+	  <script src="bower_components/moment/moment.js"></script>	
+    <script src='bower_components/angular-touch/angular-touch.min.js' ></script>
+    <script src='/bower_components/jquery-touchswipe/jquery.touchSwipe.min.js'></script>
+    <script src='bower_components/angular-local-storage/dist/angular-local-storage.js' ></script>
   	<script src="javascripts/app.js"></script>
   
   	<!-- remove once js is concatenated -->
     <!-- Services -->
   	<script src="javascripts/services/navigationService.js"></script>
+    <script src="javascripts/services/authenticationService.js"></script>
     
     <!-- Directives -->
   	<script src="javascripts/directives/navigationDirective.js"></script>   
@@ -33,7 +34,9 @@
     
   	<script src="javascripts/controllers/browse.js"></script>
     <script src="javascripts/controllers/list_view.js"></script>
+    <script src="javascripts/controllers/immersive-list-view.js"></script>
     <script src="javascripts/controllers/lists.js"></script>
+    <script src="javascripts/controllers/login.js"></script>
   	<script src="javascripts/controllers/view2.js"></script>
     <script src="javascripts/controllers/shareCtrl.js"></script>
   	<script src="javascripts/controllers/browse.js"></script>

@@ -18,6 +18,17 @@ module.exports = {
   },
   getUserFromUserId: function(userId) {
     return getUserObjGivenUserId(userId);
+  },
+  getUserFromEmail: function(email) {
+    var foundUser;
+
+    users.forEach(function(user, index) {
+      if (user.email === email) {
+        foundUser = user;
+      }
+    });
+
+    return foundUser;
   }
 };
 

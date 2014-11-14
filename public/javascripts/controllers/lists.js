@@ -1,16 +1,18 @@
-app.controller('ListsCtrl', ['$scope', '$http', '$routeParams', '$location', 'navigationService',
-   function($scope, $http, $routeParams, $location, navigationService) {
+app.controller('ListsCtrl', ['$scope', '$http', '$routeParams', '$location', 'navigationService', 'authenticationService',
+   function($scope, $http, $routeParams, $location, navigationService, authenticationService) {
       
+      var user = authenticationService.getCurrentUser();
+
       if ($location.path().indexOf("incoming") != -1) {
         navigationService.setTitle("Incoming lists");
         // get lists for user
-        $http.get("/productlist/share/user/1").success(function(data) {
+        $http.get("/productlist/share/user/" + user.id).success(function(data) {
           $scope.lists = data;
         });
       } else {
         navigationService.setTitle("Your lists");
         // get lists for user
-        $http.get("/productlist/user/1").success(function(data) {
+        $http.get("/productlist/user/" + user.id).success(function(data) {
           $scope.lists = data;
         });
       }

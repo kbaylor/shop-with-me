@@ -1,0 +1,34 @@
+<div style="height:100%;overflow-y: scroll">
+  <div ng-repeat="product in products">
+    <div class="productBox container">
+        <div class="centerBlock">
+            <img class="productImage" alt="Nautica Men's Striped J-Class T Shirt, Sunrise Red, Small" src="{{product.image_url}}">
+        </div>
+        <div class="productTitle gray-lighter">
+            {{product.title}}
+        </div>
+        <div class="divider"></div>
+        <div class="likes">
+            <div class="iconColumn"><div class="heart"></div></div>
+            <div class="commentColumn">19 likes</div>
+        </div>
+        <div class="comments">
+            <div class="iconColumn"><div class="commentImage"></div></div>
+            <a href="#">Liem</a> that's disgusting
+        </div>
+        <div class="comments">
+            <div class="iconColumn">&nbsp;</div>
+            <div class="commentColumn"><a href="#">Amin</a> Agreed</div>
+        </div>
+        <div class="comments">
+            <div class="input-group">
+                <input type="search" class="form-control" placeholder="Write a comment...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Send</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="darkDivider"></div>
+  </div>
+</div>

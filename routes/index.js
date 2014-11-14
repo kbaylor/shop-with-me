@@ -168,6 +168,11 @@ router.post('/comments/createcomment', function(req, res) {
 });
 
 /* User Endpoints */
+router.get('/users', function(req, res) {
+  var query = getQueryParams(req);
+  res.json(userService.getUserFromEmail(query.email));
+});
+
 router.get('/users/:userId/friends', function(req, res) {
   var userId = req.params.userId;
   

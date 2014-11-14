@@ -2,7 +2,8 @@ var app = angular.module('app', [
   'ngRoute',
   'ngAnimate',
   'ngTouch',
-  'mobile-angular-ui'
+  'mobile-angular-ui',
+  'LocalStorageModule'
 ]);
 
 app.config(['$routeProvider',
@@ -33,8 +34,16 @@ app.config(['$routeProvider',
         templateUrl: 'views/list_view.html',
         controller: 'ListDetailCtrl'
       }).
+      when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      }).
+      when('/lists/:listId/:itemIndex', {
+        templateUrl: 'views/immersive-list-view.html',
+        controller: 'ImmersiveListCtrl'
+      }).
       otherwise({
-        redirectTo: '/browse'
+        redirectTo: '/login'
       });
   }
 ]);

@@ -1,12 +1,14 @@
-app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService',
-  function($scope, $http, $location, navigationService) {
+app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService', 'authenticationService',
+  function($scope, $http, $location, navigationService, authenticationService) {
     $scope.test = "Hello World";
-        
+    
+    var currentUser = authenticationService.getCurrentUser();
+
     $http.get("/products/all").success(function(data) {
       $scope.products = data;
     });
     
-    $http.get("/productlist/user/1").success(function(data) {
+    $http.get("/productlist/user/" + currentUser.id).success(function(data) {
       $scope.lists = data;
       
       for (i=0; i < $scope.lists.length; i++) {
@@ -58,7 +60,7 @@ app.controller('BrowseCtrl', ['$scope', '$http', '$location', 'navigationService
     }
     
     $scope.saveNewList = function(newListTitle) {
-      $http.post("productlist/create", {title: newListTitle, ownerId: 1}).success(function(data) {
+      $http.post("productlist/create", {title: newListTitle, ownerId: currentUser.id}).success(function(data) {
         var list = data.list;
         list.products = [];
         $scope.lists[$scope.lists.length] = list;

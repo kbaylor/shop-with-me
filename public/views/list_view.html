@@ -1,9 +1,10 @@
+<<<<<<< HEAD
 <div>
   <div class="container-fluid" ng-if="isVoting == false">
     <div class="scrollable" style="padding-top:56px; padding-bottom:56px">
       <div class="scrollable-content">
         <ul class="row view-list">
-          <li class="col-xs-12 list-item swipeable" ng-repeat="product in products | orderBy: product.up_votes - product.down_votes:false" ng-swipe-left="removeProduct($index)" ng-click="">
+          <li class="col-xs-12 list-item swipeable animate-repeat" ng-repeat="product in products | orderBy: product.up_votes - product.down_votes:false" ng-swipe-left="removeProduct(product.id)" ng-click="launchImmersiveView($index)">
             <div class="row">
               <div class="col-xs-3">
                 <img ng-src="{{product.image_url}}" class="list-item-image" alt="{{product.title}}" />

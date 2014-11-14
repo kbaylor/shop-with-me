@@ -1,6 +1,9 @@
-app.controller('NotificationsCtrl', ['$scope', '$http',
-  function($scope, $http) {
-    $http.get("/notifications/user/1").success(function(data) {
+app.controller('NotificationsCtrl', ['$scope', '$http', 'authenticationService',
+  function($scope, $http, authenticationService) {
+
+    var user = authenticationService.getCurrentUser();
+
+    $http.get("/notifications/user/" + user.id).success(function(data) {
       $scope.notifications = data;
       if (1) {
         $scope.notifications = [
