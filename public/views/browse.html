@@ -51,10 +51,11 @@
     </ul>
   </div>
   
-  <modal-dialog show='modalShown' width='60%' height='50%'>
-    <h2>Create new list...<h2>
-    <br>
-    <input type="text" class="form-control" placeholder="Title" ng-model="newListTitle">
-    <button type="button" class="btn btn-default form-control" role="button" ng-click="saveNewList(newListTitle)">Save</button>
+  <modal-dialog show='modalShown' width='50%' height='30%'>
+    <h4>Create new list...</h4>
+    <form name="createListForm">
+      <input type="text" class="form-control" placeholder="Title" ng-model="newListTitle" required />
+      <button ng-disabled="createListForm.$invalid" type="button" class="btn btn-default form-control" role="button" ng-click="saveNewList(newListTitle)">Save</button>
+    </form>
   </modal-dialog>
 </div>
