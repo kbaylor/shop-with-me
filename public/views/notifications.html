@@ -18,6 +18,9 @@
               <b>{{notification.actor.name}}</b> also commented on the <b>{{notification.related_object.title}}</b> on
               <b>{{notification.related_object.product_list_owner}}&#39;s</b> <b>{{notification.related_object.product_list_title}}</b> list
             </span>
+            <span ng-switch-when="COMPLETE">
+              <b>{{notification.actor.name}}</b> reviewed your <b>{{notification.related_object.title}}</b> list
+            </span>
           </span>
         </div>
         <div class="timestamp">

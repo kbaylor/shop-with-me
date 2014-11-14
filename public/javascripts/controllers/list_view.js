@@ -1,6 +1,7 @@
 app.controller('ListDetailCtrl', ['$scope', '$http', '$routeParams', '$location', '$timeout', 'navigationService', 'authenticationService',
    function($scope, $http, $routeParams, $location, $timeout, navigationService, authenticationService) {   
       var productListId = $routeParams.listId;
+      $scope.productListId = productListId;
       $scope.isMyList;
       $scope.userId = authenticationService.getCurrentUser().id;   
 
@@ -143,6 +144,10 @@ var handleSwipe = function(scope, swipeDirection) {
         $.ajax({
           url: "/vote/finish",
           type: "POST",
+          data: {
+            productListId: scope.productListId,
+            voterId: scope.userId
+          },          
           success: function() {
             scope.handleSuccess();
           },
